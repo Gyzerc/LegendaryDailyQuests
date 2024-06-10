@@ -18,6 +18,10 @@
             <configuration>
               <relocations>
                 <relocation>
+                  <pattern>org.bstats</pattern>
+                  <shadedPattern>com.gyzer.legendaryrealms.Libs</shadedPattern>
+                </relocation>
+                <relocation>
                   <pattern>com.zaxxer</pattern>
                   <shadedPattern>com.gyzer.legendaryrealms.Libs</shadedPattern>
                 </relocation>

@@ -14,6 +14,7 @@ import com.gyzer.legendaryrealms.Listeners.PlayerEvents;
 import com.gyzer.legendaryrealms.Manager.*;
 import com.gyzer.legendaryrealms.Menu.MenuPanel;
 import com.gyzer.legendaryrealms.Utils.MsgUtils;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -63,6 +64,8 @@ public class LegendaryDailyQuests extends JavaPlugin {
             dailyQuestPlaceholder = new DailyQuestPlaceholder();
             dailyQuestPlaceholder.register();
         }
+
+        Bukkit.getScheduler().runTaskLater(this,()->new Metrics(this,22212),20);
     }
 
     private boolean BukkitVersionHigh() {
