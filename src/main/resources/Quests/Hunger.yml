@@ -1,0 +1,20 @@
+display: "&fHunger"
+material: POTATO
+amount: 1
+model: 0
+description:
+  - " &7&l· &#bcd2eeCraft Bread &f(&c%progress_sumbit%/64&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×50"
+goals:
+  #object id
+  sumbit:
+    type: CRAFT
+    #This is a custom display item example.
+    #format: custom;(Item display)
+    value: BREAD
+    amount: 64
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 50'

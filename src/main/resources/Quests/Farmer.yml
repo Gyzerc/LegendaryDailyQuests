@@ -1,0 +1,30 @@
+display: "&fFarmer"
+material: WHEAT
+amount: 1
+model: 0
+description:
+  - " &7&l· &#bcd2eeHarvest Wheat &f(&c%progress_sumbit1%/32&f)"
+  - " &7&l· &#bcd2eeHarvest Carrot &f(&c%progress_sumbit2%/32&f)"
+  - " &7&l· &#bcd2eeHarvest Potato &f(&c%progress_sumbit3%/32&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×200"
+goals:
+  #object id
+  sumbit1:
+    type: HARVEST
+    value: WHEAT
+    amount: 32
+    conditions: []
+  sumbit2:
+    type: HARVEST
+    value: CARROT
+    amount: 32
+    conditions: []
+  sumbit3:
+    type: HARVEST
+    value: POTATO
+    amount: 32
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 200'

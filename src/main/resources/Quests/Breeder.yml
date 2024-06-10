@@ -1,0 +1,24 @@
+display: "&fBreeder"
+material: LEAD
+amount: 1
+model: 0
+description:
+  - " &7&l· &#bcd2eeBreed Sheep &f(&c%progress_sumbit1%/16&f)"
+  - " &7&l· &#bcd2eeBreed Cow &f(&c%progress_sumbit2%/16&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×200"
+goals:
+  #object id
+  sumbit1:
+    type: BREED
+    value: SHEEP
+    amount: 16
+    conditions: []
+  sumbit2:
+    type: BREED
+    value: COW
+    amount: 16
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 200'

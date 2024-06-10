@@ -1,0 +1,18 @@
+name: LegendaryDailyQuests
+main: com.gyzer.legendaryrealms.LegendaryDailyQuests
+version: 1.0.4
+api-version: 1.17
+softdepend:
+  - Vault
+  - PlayerPoints
+  - MythicMobs
+  - AureliumSkills
+  - mcMMO
+  - PlaceholderAPI
+commands:
+  LegendaryDailyQuests:
+    aliases:
+      - dquests
+      - dquest
+      - ldq
+      - lquest

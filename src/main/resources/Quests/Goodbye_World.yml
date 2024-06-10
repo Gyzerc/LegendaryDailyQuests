@@ -1,0 +1,18 @@
+display: "&fGoodBye World"
+material: REDSTONE
+amount: 1
+model: 0
+description:
+  - " &7&l· &#bcd2eeDead &f(&c%progress_sumbit1%/32&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×50"
+goals:
+  #object id
+  sumbit1:
+    type: DEATH
+    value: ""
+    amount: 32
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 50'

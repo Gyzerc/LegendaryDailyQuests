@@ -1,0 +1,24 @@
+display: "&fAdventurer (3)"
+material: WOODEN_SWORD
+amount: 1
+model: 0
+description:
+  - " &7&l· &#bcd2eeCause Damages &f(&c%progress_sumbit%/256.0&f)"
+  - " &7&l· &#bcd2eeCause Projectile Damages &f(&c%progress_sumbit2%/100.0&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×350"
+goals:
+  #object id
+  sumbit:
+    type: ATTACK_DAMAGE
+    value: ""
+    amount: 256
+    conditions: []
+  sumbit2:
+    type: PROJECTILE_DAMAGE
+    value: ""
+    amount: 100
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 350'

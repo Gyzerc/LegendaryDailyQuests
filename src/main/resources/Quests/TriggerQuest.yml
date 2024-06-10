@@ -1,0 +1,18 @@
+display: "&fTriggeQruestExample"
+material: APPLE
+amount: 1
+model: 0
+description:
+  - " &7&l· &#bcd2eeTrigger &f(&c%progress_sumbit%/5&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×100"
+goals:
+  #object id
+  sumbit:
+    type: TRIGGER
+    value: ""
+    amount: 100
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 100'

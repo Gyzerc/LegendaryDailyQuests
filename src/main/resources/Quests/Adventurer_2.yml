@@ -1,0 +1,18 @@
+display: "&fAdventurer (2)"
+material: EXPERIENCE_BOTTLE
+amount: 5
+model: 0
+description:
+  - " &7&l· &#bcd2eeLevelup &f(&c%progress_sumbit%/10&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×200"
+goals:
+  #object id
+  sumbit:
+    type: GAIN_LEVEL
+    value: ""
+    amount: 10
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 200'

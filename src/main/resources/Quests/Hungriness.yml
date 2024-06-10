@@ -1,0 +1,18 @@
+display: "&fHungriness"
+material: BEEF
+amount: 1
+model: 0
+description:
+  - " &7&l· &#bcd2eeGain food &f(&c%progress_sumbit%/60&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×100"
+goals:
+  #object id
+  sumbit:
+    type: GAIN_FOOD
+    value: ""
+    amount: 60
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 100'

@@ -1,0 +1,31 @@
+#The name of the item displayed in the GUI for the task
+display: "&fButcher"
+material: BOOK
+amount: 1
+#custom-model-data
+model: 0
+#task description
+#Task Objective Progress Variables: %progress_(object's id)%
+description:
+  - " &7&l· &#bcd2eeKill Villager &f(&c%progress_killvillager%/10&f)"
+#Introduction to Task Rewards
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×50"
+
+
+#Task object set
+goals:
+  #object id
+  killvillager:
+    #The type of object
+    type: KILL_ENTITY
+    #Fill in the monster's ID here when the goal is KILL_MOB
+    value: VILLAGER
+    #The amount required to achieve the goal
+    amount: 10
+    #Additional conditions to increase the progress of this goal
+    conditions: []
+#Rewards for completing tasks
+reward:
+  run:
+    - 'console_command;eco give %player% 50'

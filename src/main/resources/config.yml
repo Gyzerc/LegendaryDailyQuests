@@ -1,0 +1,28 @@
+#English / Chinese
+lang: English
+#Allow plugins to perform update detection
+update: true
+#Allow plugins to perform update detection
+store:
+  #SQLite / MySQL
+  #default SQLite
+  mode: SQLite
+Mysql:
+  address: localhost
+  port: 3306
+  database: test
+  user: root
+  password: 123456
+HikariCP:
+  connectionTimeout: 30000
+  minimumIdle: 10
+  maximumPoolSize: 50
+#Can players refresh a task when they have already accepted a task
+can-refresh-accepted: false
+sounds:
+  #The sound effect played when accepting a task
+  accept: item_trident_thunder
+  #The sound effect played when completing a task
+  completed: entity_firework_rocket_launch
+  #The sound effect triggered when receiving the final reward
+  claim: item_totem_use

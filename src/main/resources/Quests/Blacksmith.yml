@@ -1,0 +1,30 @@
+display: "&fBlacksmith"
+material: FURNACE
+amount: 1
+model: 0
+description:
+  - " &7&l· &#bcd2eeCook Iron Ingot &f(&c%progress_sumbit1%/64&f)"
+  - " &7&l· &#bcd2eeCook Copper Ingot &f(&c%progress_sumbit2%/48&f)"
+  - " &7&l· &#bcd2eeCook Gold Ingot &f(&c%progress_sumbit3%/32&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×350"
+goals:
+  #object id
+  sumbit1:
+    type: COOK
+    value: IRON_INGOT
+    amount: 64
+    conditions: []
+  sumbit2:
+    type: COOK
+    value: COPPER_INGOT
+    amount: 48
+    conditions: []
+  sumbit3:
+    type: COOK
+    value: GOLD_INGOT
+    amount: 32
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 350'

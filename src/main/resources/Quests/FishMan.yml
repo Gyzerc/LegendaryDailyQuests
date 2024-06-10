@@ -1,0 +1,24 @@
+display: "&fFish Man"
+material: COD
+amount: 1
+model: 0
+description:
+  - " &7&l· &#bcd2eeFish Cod &f(&c%progress_sumbit1%/32&f)"
+  - " &7&l· &#bcd2eeFish Salmon &f(&c%progress_sumbit2%/32&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×200"
+goals:
+  #object id
+  sumbit1:
+    type: FISH
+    value: COD
+    amount: 32
+    conditions: []
+  sumbit2:
+    type: FISH
+    value: SALMON
+    amount: 32
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 200'

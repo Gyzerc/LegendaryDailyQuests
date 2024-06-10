@@ -1,0 +1,18 @@
+display: "&fClother"
+material: LEATHER
+amount: 1
+model: 0
+description:
+  - " &7&l· &#bcd2eeShear Sheep &f(&c%progress_sumbit1%/64&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×150"
+goals:
+  #object id
+  sumbit1:
+    type: SHEAR
+    value: SHEEP
+    amount: 64
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 150'

@@ -1,0 +1,19 @@
+display: "&fRefiner"
+material: POTION
+amount: 1
+model: 0
+description:
+  - " &7&l· &#bcd2eeBrew Power Potion &f(&c%progress_sumbit%s/16&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×150"
+goals:
+  #object id
+  sumbit:
+    type: BREW
+    value: STRENGTH
+    # in second
+    amount: 16
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 150'

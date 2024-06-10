@@ -1,0 +1,20 @@
+display: "&fMaterial Shortage.2"
+material: GOLDEN_PICKAXE
+amount: 1
+model: 0
+description:
+  - " &7&l· &#bcd2eeSubmit &cSuper Golden &f(&c%progress_sumbit%/16&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×250"
+goals:
+  #object id
+  sumbit:
+    type: GIVE_ITEM
+    #This is a custom display item example.
+    #format: custom;(Item display)
+    value: custom;&cSuper Golden
+    amount: 16
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 250'

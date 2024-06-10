@@ -1,0 +1,18 @@
+display: "&fAdventurer (4)"
+material: IRON_SWORD
+amount: 1
+model: 0
+description:
+  - " &7&l· &#bcd2eeKill Boss &f(&c%progress_sumbit%/1&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×350"
+goals:
+  #object id
+  sumbit:
+    type: MYTHICMOBS_KILL
+    value: boss
+    amount: 1
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 350'

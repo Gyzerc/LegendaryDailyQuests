@@ -1,0 +1,24 @@
+display: "&fWarrior"
+material: SHIELD
+amount: 1
+model: 0
+description:
+  - " &7&l· &#bcd2eeUse shield blocking damages &f(&c%progress_sumbit%/256.0&f)"
+  - " &7&l· &#bcd2eeUse shield blocking projectile damages &f(&c%progress_sumbit2%/100.0&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×350"
+goals:
+  #object id
+  sumbit:
+    type: BLOCKING
+    value: ""
+    amount: 256
+    conditions: []
+  sumbit2:
+    type: BLOCKING_PROJECTILE
+    value: ""
+    amount: 100
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 350'

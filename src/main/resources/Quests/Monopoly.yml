@@ -1,0 +1,20 @@
+display: "&fMonopoly"
+material: GOLD_INGOT
+amount: 32
+model: 0
+description:
+  - " &7&l· &#bcd2eeHave 10000 money &f(&c%progress_sumbit%/10000&f)"
+reward_description:
+  - " &7&l· &#9AFF9APoints ×150"
+goals:
+  #object id
+  sumbit:
+    type: PLACEHOLDERAPI
+    #This is a PlaceholderAPI example.
+    value: '%vault_eco_balance%'
+    #This is equal value
+    amount: 10000
+    conditions: []
+reward:
+  run:
+    - 'console_command;points give %player% 150'

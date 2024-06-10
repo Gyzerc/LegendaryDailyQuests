@@ -1,0 +1,42 @@
+#The name of the item displayed in the GUI for the task
+display: "&fGolden Miner"
+material: BOOK
+amount: 1
+#custom-model-data
+model: 0
+#task description
+#Task Objective Progress Variables: %progress_(object's id)%
+description:
+  - " &7&l· &#bcd2eeBreak Diamond Ore &f(&c%progress_diamond%/10&f)"
+  - " &7&l· &#bcd2eeBreak Iron Ore &f(&c%progress_iron%/32&f)"
+#Introduction to Task Rewards
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×150"
+
+
+#Task object set
+goals:
+  #object id
+  diamond:
+    #The type of object
+    type: BREAK
+    #Fill in the monster's ID here when the goal is KILL_MOB
+    value: DIAMOND_ORE
+    #The amount required to achieve the goal
+    amount: 10
+    #Additional conditions to increase the progress of this goal
+    conditions: []
+  #object id
+  iron:
+    #The type of object
+    type: BREAK
+    #Fill in the monster's ID here when the goal is KILL_MOB
+    value: IRON_ORE
+    #The amount required to achieve the goal
+    amount: 32
+    #Additional conditions to increase the progress of this goal
+    conditions: []
+#Rewards for completing tasks
+reward:
+  run:
+    - 'console_command;eco give %player% 150'

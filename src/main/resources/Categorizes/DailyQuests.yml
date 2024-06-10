@@ -1,0 +1,102 @@
+settings:
+  #display
+  display: '&eDaily Quests'
+  #refresh tasks cycle (by day)
+  refresh: 1
+  #refresh tasks amount
+  amount: 5
+  #refresh quests list (Randomly select tasks from below)
+  quests:
+    - Butcher
+    - Golden_Miner
+    - Material_Shortage_1
+    - Material_Shortage_2
+    - Stonemason
+    - Happy_Trade
+    - Hunger
+    - Running_Man
+    - Adventurer
+    - Adventurer_2
+    - Adventurer_3
+    - Adventurer_4
+    - Hungriness
+    - Farmer
+    - Goodbye_World
+    - FishMan
+    - Breeder
+    - Blacksmith
+    - Clother
+    - Warrior
+    - Enchanter
+    - Timer
+    - Refiner
+    - TriggerQuest
+    - Milking
+    - Monopoly
+  #Rewards for completing all tasks
+  rewards:
+    - 'console_command;money give %player% 1000'
+    - 'console_command;give %player% diamond 64'
+#menu setting
+gui:
+  title: '&0[&#E0FFFF Daily Quests &0]'
+  size: 54
+  layout:
+    - 'aaaaaaaaa'
+    - 'abbbbacda'
+    - 'aaaaaaaaa'
+  placeholder:
+    completed: '&#00EE76 → Completed.'
+    doing: '&#EEB4B4 → In progress.'
+    wait: '&#836FFF → Click to accept'
+    give_item: '&#63B8FF → Click to deliver the item'
+  Items:
+    'a':
+      material: BROWN_STAINED_GLASS_PANE
+      model: 0
+      amount: 1
+      display: '&f '
+      lore: []
+      function:
+        type: none
+    'b':
+      display: '%quest% &f(&e%progress%%&f)'
+      lore:
+        - '&#CDC673&lQuest Objectives'
+        # %description% corresponds to the description of the task.
+        - '%description%'
+        - '&#EEC900&lQuest Rewards'
+        # %rewards% corresponds to the rewards of the task.
+        - '%rewards%'
+        - ''
+        - '%placeholder%'
+      function:
+        type: quest
+    'c':
+      material: ENDER_PEARL
+      model: 0
+      amount: 1
+      display: '&#79CDCDRefresh Task'
+      lore:
+        - '&#bcd2eeYou have &f%refresh% &#bcd2eetimes left.'
+        - '&#bcd2eeNext automatic refresh in 1 days.'
+        - ''
+        - '&#66CDAA → Click to refresh'
+      function:
+        type: refresh
+    'd':
+      material: CHEST
+      model: 0
+      amount: 1
+      display: '&#79CDCDExtra Rewards &7(&e%completeds%/%quests%&7)'
+      lore:
+        - '&#bcd2eeAfter completing all tasks'
+        - '&#bcd2eeYou can receive extra rewards.'
+        - ''
+        - '&#a5acb8&lRewards Information'
+        - ' &f- Money ×1000'
+        - ' &f- Diamond ×64'
+        - ''
+        - '&#66CDAA → Click to claim'
+      function:
+        type: rewards

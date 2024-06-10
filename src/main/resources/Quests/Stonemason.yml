@@ -1,0 +1,27 @@
+display: "&fStonemason"
+material: STONE
+amount: 1
+model: 0
+description:
+  - " &7&l· &#bcd2eePlace Stone &f(&c%progress_place%/128&f)"
+  - " &7&l· &#bcd2eePlace Stone Bricks &f(&c%progress_place2%/64&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×80"
+goals:
+  #object id
+  place:
+    type: PLACE
+    #when goal is PLACE
+    #format:
+    #  value: block's type
+    value: STONE
+    amount: 128
+    conditions: []
+  place2:
+    type: PLACE
+    value: STONE_BRICKS
+    amount: 128
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 80'

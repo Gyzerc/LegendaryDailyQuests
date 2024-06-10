@@ -1,0 +1,18 @@
+display: "&fEnchanter"
+material: ENCHANTED_BOOK
+amount: 1
+model: 0
+description:
+  - " &7&l· &#bcd2eeEnchanted Protection I~IV &f(&c%progress_sumbit%/4&f)"
+reward_description:
+  - " &7&l· &#9AFF9AMoney ×150"
+goals:
+  #object id
+  sumbit:
+    type: ENCHANT
+    value: PROTECTION
+    amount: 5
+    conditions: []
+reward:
+  run:
+    - 'console_command;eco give %player% 150'
