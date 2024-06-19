@@ -123,7 +123,7 @@ public class PlayerData {
             if (quests.containsKey(categorize.getId()) || categorize.getQuests().size() == 0){
                 return;
             }
-            LegendaryDailyQuestsAPI.randomPlayerQuests(uuid,categorize);
+            LegendaryDailyQuestsAPI.randomPlayerQuests(uuid,categorize,new ArrayList<>());
         });
     }
 

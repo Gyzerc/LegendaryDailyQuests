@@ -30,7 +30,7 @@ public class LegendaryDailyQuestsAPI {
     public static PlayerData getPlayerData(UUID uuid){
         return LegendaryDailyQuests.getLegendaryDailyQuests().getPlayerDataManager().getPlayerData(uuid);
     }
-    public static void randomPlayerQuests(UUID uuid, Categorize categorize){
+    public static void randomPlayerQuests(UUID uuid, Categorize categorize , List<String> specials){
         PlayerData data = getPlayerData(uuid);
         String id = categorize.getId();
         data.getQuests().remove(id);
@@ -40,12 +40,12 @@ public class LegendaryDailyQuestsAPI {
         data.getProgressData().remove(id);
 
         List<String> quests = new ArrayList<>(categorize.getQuests());
-        LinkedList<String> select = new LinkedList<>();
-        int a = categorize.getAmount();
+        LinkedList<String> select = new LinkedList<>(specials);
+        int a = categorize.getAmount() - specials.size();
         while (a > 0 && quests.size() > 0) {
             int roll = (new Random()).nextInt(quests.size());
             String questId = quests.remove(roll);
-            if (LegendaryDailyQuests.getLegendaryDailyQuests().getQuestsManager().getQuest(questId) != null) {
+            if (!select.contains(questId) && LegendaryDailyQuests.getLegendaryDailyQuests().getQuestsManager().getQuest(questId) != null) {
                 select.add(questId);
                 a--;
             }

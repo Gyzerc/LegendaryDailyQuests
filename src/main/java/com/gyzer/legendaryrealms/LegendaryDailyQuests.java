@@ -12,7 +12,6 @@ import com.gyzer.legendaryrealms.Listeners.Other.*;
 import com.gyzer.legendaryrealms.API.Events.NewDayEvent;
 import com.gyzer.legendaryrealms.Listeners.PlayerEvents;
 import com.gyzer.legendaryrealms.Manager.*;
-import com.gyzer.legendaryrealms.Menu.MenuPanel;
 import com.gyzer.legendaryrealms.Utils.MsgUtils;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
@@ -95,7 +94,7 @@ public class LegendaryDailyQuests extends JavaPlugin {
             Bukkit.getPluginManager().registerEvents(new HarvestEvent(), this);
             Bukkit.getPluginManager().registerEvents(new BlockEvent(), this);
         }
-        Bukkit.getPluginManager().registerEvents(new BrewEvent(),this);
+        Bukkit.getPluginManager().registerEvents(new BrewQuestEvent(),this);
     }
 
     @Override

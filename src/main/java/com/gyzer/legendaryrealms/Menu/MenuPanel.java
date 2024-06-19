@@ -45,9 +45,9 @@ public class MenuPanel implements InventoryHolder {
             this.questAmount = 0;
             PlayerData data = LegendaryDailyQuestsAPI.getPlayerData(p);
             //检测是否本轮的任务还未刷新
-            if (data.getAccepts(categorize.getId()).isEmpty()){
+            if (data.getQuests().get(categorize.getId()).isEmpty()){
                 if (categorize.getQuests().size() > 0){
-                    LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(),categorize);
+                    LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(),categorize,new ArrayList<>());
                 }
             }
             loadMenu(LegendaryDailyQuestsAPI.getPlayerData(p));
@@ -167,7 +167,7 @@ public class MenuPanel implements InventoryHolder {
                         if ( (!legendaryDailyQuests.getConfigurationsManager().getConfig().can_refresh_accepted && data.getAccepts(categorize.getId()).isEmpty()) || legendaryDailyQuests.getConfigurationsManager().getConfig().can_refresh_accepted ) {
                             p.sendMessage(lang.PLUGIN + lang.refresh);
                             data.takeRefresh(categorize.getId(), 1);
-                            LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(), categorize);
+                            LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(), categorize, new ArrayList<>());
                             MenuPanel panel = new MenuPanel(p, categorize);
                             Bukkit.getScheduler().runTask(legendaryDailyQuests, panel::open);
                             return;

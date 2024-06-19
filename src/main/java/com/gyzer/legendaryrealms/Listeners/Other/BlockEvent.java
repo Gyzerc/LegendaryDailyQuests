@@ -9,6 +9,7 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
@@ -65,14 +66,14 @@ public class BlockEvent implements Listener {
         }
         return false;
     }
-//
-//    @EventHandler
-//    public void onBreak(BlockBreakEvent e){
-//        if (!e.isCancelled() ) {
-//            if (e.getBlock().getMetadata("place").isEmpty()) {
-//                new StringGoalChecker(e.getBlock().getType().name()).check(e.getPlayer(), ObjectiveType.BREAK, 1);
-//            }
-//        }
-//    }
-//
+
+    @EventHandler
+    public void onBreak(BlockBreakEvent e){
+        if (!e.isCancelled() ) {
+            if (e.getBlock().getMetadata("LegendaryDailyQuest_PlayerPlace").isEmpty()) {
+                new StringGoalChecker(e.getBlock().getType().name()).check(e.getPlayer(), ObjectiveType.BREAK, 1);
+            }
+        }
+    }
+
 }
