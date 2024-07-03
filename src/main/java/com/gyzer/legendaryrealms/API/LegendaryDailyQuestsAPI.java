@@ -10,6 +10,7 @@ import com.gyzer.legendaryrealms.Data.Quest.Categorize;
 import com.gyzer.legendaryrealms.Data.Quest.Objective.QuestObjective;
 import com.gyzer.legendaryrealms.Data.Quest.Progress.ProgressData;
 import com.gyzer.legendaryrealms.Data.Quest.Quest;
+import com.gyzer.legendaryrealms.Data.Quest.QuestRarity;
 import com.gyzer.legendaryrealms.Data.System.CompletedData;
 import com.gyzer.legendaryrealms.Data.User.PlayerData;
 import com.gyzer.legendaryrealms.LegendaryDailyQuests;
@@ -39,16 +40,38 @@ public class LegendaryDailyQuestsAPI {
         data.getClaimFinallyRewards().remove(id);
         data.getProgressData().remove(id);
 
-        List<String> quests = new ArrayList<>(categorize.getQuests());
         LinkedList<String> select = new LinkedList<>(specials);
         int a = categorize.getAmount() - specials.size();
-        while (a > 0 && quests.size() > 0) {
-            int roll = (new Random()).nextInt(quests.size());
-            String questId = quests.remove(roll);
-            if (!select.contains(questId) && LegendaryDailyQuests.getLegendaryDailyQuests().getQuestsManager().getQuest(questId) != null) {
-                select.add(questId);
-                a--;
+        int round = 0;
+
+        while (a > 0 && round < config.MAX_ROUND) {
+            for (QuestRarity rarity : LegendaryDailyQuests.getLegendaryDailyQuests().getQuestRaritiesManager().getSorts()) {
+                int selectAmount = select.stream().filter(qid -> LegendaryDailyQuests.getLegendaryDailyQuests().getQuestsManager().getQuest(qid).getRarity().getId().equals(rarity.getId())).collect(Collectors.toList()).size();
+                if (rarity.getMax() > 0 && selectAmount >= rarity.getMax()) {
+                    continue;
+                }
+                int roll = (new Random()).nextInt(101);
+                if (roll <= rarity.getChance()) {
+                    List<String> quests = new ArrayList<>(categorize.getQuests().stream().filter(quest -> {
+                                Quest q = LegendaryDailyQuests.getLegendaryDailyQuests().getQuestsManager().getQuest(quest);
+                                if (q != null) {
+                                    return q.getRarity().getId().equals(rarity.getId());
+                                }
+                                return false;
+                            }
+                    ).collect(Collectors.toList()));
+                    if (!quests.isEmpty()) {
+                        roll = (new Random()).nextInt(quests.size());
+                        String questId = quests.remove(roll);
+                        if (!select.contains(questId) && LegendaryDailyQuests.getLegendaryDailyQuests().getQuestsManager().getQuest(questId) != null) {
+                            select.add(questId);
+                            a--;
+
+                        }
+                    }
+                }
             }
+            round++;
         }
         data.getQuests().put(id,select);
         data.update(false);
@@ -88,6 +111,10 @@ public class LegendaryDailyQuestsAPI {
 
         p.sendMessage(lang.PLUGIN+lang.accept.replace("%quest%",quest.getDisplay()));
         config.accept.ifPresent(sound -> p.playSound(p.getLocation(),sound,1,1));
+        if (quest.getRarity().isBroad()) {
+            Bukkit.broadcastMessage(lang.PLUGIN + lang.broad_when_accept.replace("%player%",p.getName()).replace("%rarity%",quest.getRarity().getDisplay()).replace("%quest%",quest.getDisplay()));
+        }
+
     }
 
     public static boolean hasAcceptQuest(PlayerData data,String cat,String questId){

@@ -1,6 +1,9 @@
 package com.gyzer.legendaryrealms.API;
 
 import com.gyzer.legendaryrealms.Configurations.Language;
+import com.gyzer.legendaryrealms.Data.Quest.Categorize;
+import com.gyzer.legendaryrealms.Data.Quest.Quest;
+import com.gyzer.legendaryrealms.Data.Quest.QuestRarity;
 import com.gyzer.legendaryrealms.Data.User.PlayerData;
 import com.gyzer.legendaryrealms.LegendaryDailyQuests;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -10,8 +13,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class DailyQuestPlaceholder extends PlaceholderExpansion {
     @Override
@@ -26,7 +31,7 @@ public class DailyQuestPlaceholder extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getVersion() {
-        return "1.0.6";
+        return "1.0.7";
     }
 
     @Override
@@ -45,7 +50,30 @@ public class DailyQuestPlaceholder extends PlaceholderExpansion {
                 return String.valueOf(data.getRefresh().getOrDefault(categorize,0));
             }
             return "0";
-        } else if (params.startsWith("top_me_")) {
+        } else if (params.startsWith("amount_")) {
+            String[] args = params.split("_");
+            int amount = 0;
+            if (args.length == 3) {
+                Categorize categorize = legendaryDailyQuests.getCategorizesManager().getCategorize(args[1]);
+                if (categorize != null) {
+                    QuestRarity rarity = legendaryDailyQuests.getQuestRaritiesManager().getRarity(args[2]);
+                    if (rarity != null) {
+                        List<String> quests = data.getQuests().getOrDefault(args[1],new LinkedList<>());
+                        if (!quests.isEmpty()) {
+                            amount = quests.stream().filter(id -> {
+                                Quest quest = legendaryDailyQuests.getQuestsManager().getQuest(id);
+                                if (quest != null) {
+                                    return quest.getRarity().getId().equals(args[2]);
+                                }
+                                return false;
+                            }).collect(Collectors.toList()).size() ;
+                        }
+                    }
+                }
+            }
+            return String.valueOf(amount);
+        }
+        else if (params.startsWith("top_me_")) {
             String categorize = params.replace("top_me_","");
             if (legendaryDailyQuests.getCategorizesManager().getCategorize(categorize) != null) {
                 return ""+ (1 + legendaryDailyQuests.getSystemDataManager().getCompletedData().getTop(categorize,player.getUniqueId()).orElse(-1));

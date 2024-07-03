@@ -4,6 +4,7 @@ import com.gyzer.legendaryrealms.API.LegendaryDailyQuestsAPI;
 import com.gyzer.legendaryrealms.Commands.CommandTabBuilder;
 import com.gyzer.legendaryrealms.Data.Quest.Categorize;
 import com.gyzer.legendaryrealms.Data.Quest.Quest;
+import com.gyzer.legendaryrealms.Data.Quest.QuestRarity;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.HumanEntity;
@@ -44,13 +45,19 @@ public class RandomCommand extends com.gyzer.legendaryrealms.Commands.LegendaryC
         List<String> quests = new ArrayList<>();
         for (String id : selects) {
             //检测该id是否为某个品质的类别
-
-            //最后进行检测该id是否是个任务
-            Quest quest = legendaryDailyQuests.getQuestsManager().getQuest(id);
-            if (quest != null) {
-                quests.add(id);
+            QuestRarity rarity = legendaryDailyQuests.getQuestRaritiesManager().getRarity(id);
+            if (rarity != null) {
+                List<String> rarityQuests = legendaryDailyQuests.getQuestsManager().getQuestsByRarity(rarity);
+                if (!rarityQuests.isEmpty()) {
+                    quests.add(rarityQuests.get((new Random().nextInt(rarityQuests.size()))));
+                }
+            } else {
+                //最后进行检测该id是否是个任务
+                Quest quest = legendaryDailyQuests.getQuestsManager().getQuest(id);
+                if (quest != null) {
+                    quests.add(id);
+                }
             }
-
         }
         return quests;
     }

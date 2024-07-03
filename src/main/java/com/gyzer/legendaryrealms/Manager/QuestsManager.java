@@ -5,6 +5,7 @@ import com.gyzer.legendaryrealms.Data.Quest.Condition.Condition;
 import com.gyzer.legendaryrealms.Data.Quest.Objective.ObjectiveType;
 import com.gyzer.legendaryrealms.Data.Quest.Objective.QuestObjective;
 import com.gyzer.legendaryrealms.Data.Quest.Quest;
+import com.gyzer.legendaryrealms.Data.Quest.QuestRarity;
 import com.gyzer.legendaryrealms.LegendaryDailyQuests;
 import com.gyzer.legendaryrealms.Utils.ItemUtils;
 import com.gyzer.legendaryrealms.Utils.MsgUtils;
@@ -18,6 +19,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 public class QuestsManager {
     private final LegendaryDailyQuests legendaryDailyQuests = LegendaryDailyQuests.getLegendaryDailyQuests();
@@ -53,6 +55,9 @@ public class QuestsManager {
                 List<String> preview_lore = MsgUtils.msg(yml.getStringList("description"));
                 List<String> preview_rewards = MsgUtils.msg(yml.getStringList("reward_description"));
                 List<String> rewards = yml.getStringList("reward.run");
+                String rarityStr = yml.getString("rarity");
+                QuestRarity rarity = rarityStr != null ? (legendaryDailyQuests.getQuestRaritiesManager().getRarity(rarityStr) != null ? legendaryDailyQuests.getQuestRaritiesManager().getRarity(rarityStr) : legendaryDailyQuests.getQuestRaritiesManager().getLowest()) : legendaryDailyQuests.getQuestRaritiesManager().getLowest();
+
 
                 ConfigurationSection section = yml.getConfigurationSection("goals");
                 if (section == null){
@@ -78,11 +83,15 @@ public class QuestsManager {
                     legendaryDailyQuests.info("The goal of this task was not set correctly, and loading the task has been skipped: "+QuestFile.getName(), Level.SEVERE);
                     continue;
                 }
-                caches.put(id,new Quest(id,display,preview_material,preview_model,preview_amount,preview_lore,preview_rewards,objectives,rewards));
+                caches.put(id,new Quest(id,display,preview_material,preview_model,preview_amount,preview_lore,preview_rewards,objectives,rewards,rarity));
                 legendaryDailyQuests.sendConsoleMessage(language.PLUGIN+" &aSuccessfully load quest &f"+id+"");
                 a++;
              }
         }
         legendaryDailyQuests.sendConsoleMessage(language.PLUGIN+" &eloaded &a"+a+" &equests.");
+    }
+
+    public List<String> getQuestsByRarity(QuestRarity rarity) {
+        return caches.values().stream().filter(q -> q.getRarity().getId().equals(rarity.getId())).map(q -> q.getId()).collect(Collectors.toList());
     }
 }

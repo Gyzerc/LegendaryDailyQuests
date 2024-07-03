@@ -24,24 +24,6 @@ public class BlockEvent implements Listener {
     public static final NamespacedKey namespacedKey_break = new NamespacedKey(LegendaryDailyQuests.getLegendaryDailyQuests(),"break");
 
     @EventHandler
-    public void onBlockDropItem(BlockDropItemEvent e) {
-        if (!e.isCancelled()) {
-            Player p = e.getPlayer();
-            if (e.getBlock().hasMetadata("LegendaryDailyQuest_PlayerPlace")) {
-                return;
-            }
-            for (Item item : e.getItems()) {
-                ItemStack i = item.getItemStack();
-                ItemMeta id = i .getItemMeta();
-                PersistentDataContainer data = id.getPersistentDataContainer();
-                data.set(namespacedKey_break, PersistentDataType.STRING,p.getName());
-                i.setItemMeta(id);
-            }
-        }
-    }
-
-
-    @EventHandler
     public void onPlace(BlockPlaceEvent e){
         if (!e.isCancelled()){
             Player p = e.getPlayer();

@@ -2,6 +2,7 @@ package com.gyzer.legendaryrealms.Listeners.Other;
 
 import com.gyzer.legendaryrealms.Data.Quest.Checker.StringGoalChecker;
 import com.gyzer.legendaryrealms.Data.Quest.Objective.ObjectiveType;
+import com.gyzer.legendaryrealms.LegendaryDailyQuests;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -15,6 +16,7 @@ import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class BrewQuestEvent implements Listener {
@@ -23,22 +25,23 @@ public class BrewQuestEvent implements Listener {
 
     @EventHandler
     public void onBrewing(BrewEvent e){
-        Bukkit.broadcastMessage(e.getBlock().getLocation().toString());
         Player p =  ownerCache.remove(e.getBlock().getLocation());
         if (p != null){
-            String[] types=stackCache.remove(e.getBlock().getLocation());
-            BrewerInventory inv=e.getContents();
-            for (int slot=0;slot <=2 ; slot++){
-                String old=types[slot];
-                ItemStack i=inv.getItem(slot);
-                if (i!=null && (i.getType().equals(Material.POTION) || i.getType().equals(Material.SPLASH_POTION)) ){
-                    PotionMeta id= (PotionMeta) i.getItemMeta();
-                    String type=id.getBasePotionData().getType().name();
-                    if (!type.equals(old)){
-                        new StringGoalChecker(type).check(p, ObjectiveType.BREW,1);
+            LegendaryDailyQuests.getLegendaryDailyQuests().sync(()->{
+                String[] types=stackCache.remove(e.getBlock().getLocation());
+                BrewerInventory inv=e.getContents();
+                for (int slot=0;slot <=2 ; slot++){
+                    String old=types[slot];
+                    ItemStack i=inv.getItem(slot);
+                    if (i!=null && (i.getType().equals(Material.POTION) || i.getType().equals(Material.SPLASH_POTION)) ){
+                        PotionMeta id= (PotionMeta) i.getItemMeta();
+                        String type=id.getBasePotionData().getType().name();
+                        if (!type.equals(old)){
+                            new StringGoalChecker(type).check(p, ObjectiveType.BREW,1);
+                        }
                     }
                 }
-            }
+            });
         }
     }
 

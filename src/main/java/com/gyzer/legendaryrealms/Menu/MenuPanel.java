@@ -119,6 +119,7 @@ public class MenuPanel implements InventoryHolder {
                                     .addListPlaceHolder("rewards",quest.getPreview_reward())
                                     .addSinglePlaceHolder("placeholder",state)
                                     .addSinglePlaceHolder("quest",quest.getDisplay())
+                                    .addSinglePlaceHolder("rarity",quest.getRarity().getDisplay())
                                     .addSinglePlaceHolder("progress",LegendaryDailyQuestsAPI.getProgressPercent(p,data,categorize.getId(),quest)+"")
                                     .startReplace(i);
                             menuItem.setItem(QuestProgressReplacement(i,quest,data));

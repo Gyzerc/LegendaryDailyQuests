@@ -19,6 +19,23 @@ HikariCP:
   maximumPoolSize: 50
 #Can players refresh a task when they have already accepted a task
 can-refresh-accepted: false
+  # 随机池每次随机时随机总轮数
+  # 每次刷新任务时：
+  # 第一轮： 假设有5个任务位置
+  #   第一个任务：随机到了普通任务
+  #   第二个任务：随机到了普通任务
+  #   第三个任务：随机到了稀有任务
+  #   第四个任务：每个品质都没随机到
+  #   第五个任务：每个品质都没随机到
+  # 若第一轮有没被随机到的则进行下一轮
+  # 第二轮： 现在第四、五任务没被随机到
+  #   第四个任务：随机到史诗品质
+  #   第五个任务：仍未被随机到
+  #   第二轮还有任务未被随机到，则进行下一轮
+  # ....
+  # 直到不超过下面设定值的轮数中的某轮第五个任务被随机到商品后结束
+  # 或者到了设定值的轮数仍未有任务则该任务为空
+refresh-round-max: 20
 sounds:
   #The sound effect played when accepting a task
   accept: item_trident_thunder

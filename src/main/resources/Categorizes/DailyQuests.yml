@@ -62,6 +62,7 @@ gui:
     'b':
       display: '%quest% &f(&e%progress%%&f)'
       lore:
+        - '&b&lRarity: %rarity%'
         - '&#CDC673&lQuest Objectives'
         # %description% corresponds to the description of the task.
         - '%description%'

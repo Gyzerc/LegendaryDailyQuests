@@ -17,6 +17,7 @@ public class Config extends ConfigurationProvider{
     public Optional<Sound> accept;
     public Optional<Sound> completed;
     public Optional<Sound> claim;
+    public int MAX_ROUND;
     @Override
     protected void readDefault() {
         Chinese = getValue("lang","English").equals("Chinese");
@@ -26,6 +27,7 @@ public class Config extends ConfigurationProvider{
         accept = getSound(getValue("sounds.accept","item_trident_thunder"));
         completed = getSound(getValue("sounds.completed","entity_firework_rocket_launch"));
         claim = getSound(getValue("sounds.claim","item_totem_use"));
+        MAX_ROUND = getValue("refresh-round-max",20);
     }
 
     private Optional<Sound> getSound(String sound){

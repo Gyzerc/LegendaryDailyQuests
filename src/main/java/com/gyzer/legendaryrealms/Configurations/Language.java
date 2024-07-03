@@ -40,6 +40,7 @@ public class Language extends ConfigurationProvider {
     public String unknown_categorize;
     public String notOnline;
     public String default_no_player;
+    public String broad_when_accept;
 
     public Language(boolean Chinese) {
         super("./plugins/LegendaryDailyQuests", "", "Language.yml");
@@ -146,6 +147,7 @@ public class Language extends ConfigurationProvider {
         refresh_take = MsgUtils.msg(getValue("refresh.take","&e你使玩家 &f%player% &e的 %categorize% &e刷新次数减少了 &f%amount%","&eYou have decreased the refresh points of player &f%player% &e's %categorize% &eby &f%amount%",useChines));
         refresh_set = MsgUtils.msg(getValue("refresh.set","&e你使玩家 &f%player% &e的 %categorize% &e刷新次数设置为 &f%amount%","&eYou have set the refresh points of player &f%player% &e's %categorize% &eby &f%amount%",useChines));
         default_no_player = MsgUtils.msg(getValue("default.no-player","&7暂无玩家","&7No Player.",useChines));
+        broad_when_accept = MsgUtils.msg(getValue("broad-when-accept","&e玩家%player%接受了个%rarity%&e级别的每日任务 &f%quest%","&ePlayer %player% accepted daily quest at the %rarity% &elevel: %quest%",useChines));
         saveYml();
     }
 

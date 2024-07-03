@@ -81,6 +81,7 @@ public class LegendaryDailyQuests extends JavaPlugin {
             }
             builder.append(c);
         }
+        groups.add(builder.toString());
 
         int version = Integer.parseInt(groups.get(1));
         return (version >= 13);
@@ -110,6 +111,7 @@ public class LegendaryDailyQuests extends JavaPlugin {
         plugin = configurationsManager.getLanguage().PLUGIN;
         questsManager = new QuestsManager();
         categorizesManager = new CategorizesManager();
+        questRaritiesManager = new QuestRaritiesManager(this);
     }
 
 
@@ -133,6 +135,12 @@ public class LegendaryDailyQuests extends JavaPlugin {
     private CategorizesManager categorizesManager;
     private IntegrationsManager integrationsManager;
     private SystemDataManager systemDataManager;
+    private QuestRaritiesManager questRaritiesManager;
+
+    public QuestRaritiesManager getQuestRaritiesManager() {
+        return questRaritiesManager;
+    }
+
     public static LegendaryDailyQuests getLegendaryDailyQuests() {
         return legendaryDailyQuests;
     }

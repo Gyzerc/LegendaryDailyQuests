@@ -1,0 +1,18 @@
+common:
+  display: '&7普通任务'
+  weight: 3
+  chance: 100
+  broad-when-accept: false
+  max: -1
+rare:
+  display: '&e困难任务'
+  weight: 2
+  chance: 25
+  broad-when-accept: false
+  max: 3
+epic:
+  display: '&6地狱级任务'
+  weight: 1
+  chance: 5
+  broad-when-accept: true
+  max: 1

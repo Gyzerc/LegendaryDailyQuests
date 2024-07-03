@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.gyzer.legendaryrealms</groupId>
   <artifactId>LegendaryDailyQuests</artifactId>
-  <version>1.0.6</version>
+  <version>1.0.7</version>
   <build>
     <plugins>
       <plugin>
@@ -49,10 +49,6 @@
       <id>codemc-repo</id>
       <url>https://repo.codemc.io/repository/maven-public/</url>
     </repository>
-    <repository>
-      <id>placeholderapi</id>
-      <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
-    </repository>
   </repositories>
   <dependencies>
     <dependency>
@@ -71,7 +67,8 @@
       <groupId>me.clip</groupId>
       <artifactId>placeholderapi</artifactId>
       <version>2.11.3</version>
-      <scope>provided</scope>
+      <scope>system</scope>
+      <systemPath>${basedir}/src/lib/PlaceholderAPI-2.11.5.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>com.archyx</groupId>
