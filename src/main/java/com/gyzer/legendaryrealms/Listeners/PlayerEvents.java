@@ -44,6 +44,12 @@ public class PlayerEvents implements Listener {
         PlayerData data = legendaryDailyQuests.getPlayerDataManager().getPlayerData(p);
         data.checkQuests();
     }
+    @EventHandler
+    public void onQuit(PlayerQuitEvent e) {
+        Player p = e.getPlayer();
+        PlayerData data = legendaryDailyQuests.getPlayerDataManager().getPlayerData(p);
+        data.update(true);
+    }
 
     @EventHandler
     public void onInvclick(InventoryClickEvent e){
