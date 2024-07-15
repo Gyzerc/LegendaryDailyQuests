@@ -41,13 +41,13 @@ public class PlayerEvents implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
         Player p = e.getPlayer();
-        PlayerData data = legendaryDailyQuests.getPlayerDataManager().getPlayerData(p);
+        PlayerData data = legendaryDailyQuests.getPlayerDataManager().getPlayerData(p.getUniqueId());
         data.checkQuests();
     }
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
         Player p = e.getPlayer();
-        PlayerData data = legendaryDailyQuests.getPlayerDataManager().getPlayerData(p);
+        PlayerData data = legendaryDailyQuests.getPlayerDataManager().getPlayerData(p.getUniqueId());
         data.update(true);
     }
 

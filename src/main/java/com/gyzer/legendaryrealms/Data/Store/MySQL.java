@@ -154,27 +154,24 @@ public class MySQL extends DataProvider{
         Connection connection = null;
         try {
             connection = connectPool.getConnection();
-            Optional<ResultSet> resultSet = getDataStringResult(connection,DatabaseTable.USER_DATA.getBuilder(), uuid.toString());
+            Optional<ResultSet> resultSet = getDataStringResult(connection,DatabaseTable.USER_DATA.getBuilder(),uuid.toString());
             if (resultSet.isPresent()) {
                 ResultSet rs = resultSet.get();
-                while (rs.next()) {
+                String questsStr = rs.getString("quests");
+                String acceptsStr = rs.getString("accepts");
+                String completedsStr = rs.getString("completeds");
+                String claimStr = rs.getString("claims");
+                String refreshStr = rs.getString("refresh");
+                String progressStr = rs.getString("progress");
 
-                    String questsStr = rs.getString("quests");
-                    String acceptsStr = rs.getString("accepts");
-                    String completedsStr = rs.getString("completeds");
-                    String claimStr = rs.getString("claims");
-                    String refreshStr = rs.getString("refresh");
-                    String progressStr = rs.getString("progress");
+                HashMap<String, LinkedList<String>> quests = StrToMapLink(questsStr);
+                HashMap<String, List<String>> accepts = StrToMap(acceptsStr);
+                HashMap<String, List<String>> completeds = StrToMap(completedsStr);
+                HashMap<String, ProgressData> process = toProgress(progressStr);
+                HashMap<String, Integer> refresh = StrToIntMap(refreshStr);
+                HashMap<String, Boolean> claimData = StrToClaimData(claimStr);
 
-                    HashMap<String, LinkedList<String>> quests = StrToMapLink(questsStr);
-                    HashMap<String, List<String>> accepts = StrToMap(acceptsStr);
-                    HashMap<String, List<String>> completeds = StrToMap(completedsStr);
-                    HashMap<String, ProgressData> process = toProgress(progressStr);
-                    HashMap<String, Integer> refresh = StrToIntMap(refreshStr);
-                    HashMap<String, Boolean> claimData = StrToClaimData(claimStr);
-
-                    return Optional.of(new PlayerData(uuid, quests, accepts, completeds, process, claimData, refresh));
-                }
+                return Optional.of(new PlayerData(uuid, quests, accepts, completeds, process, claimData, refresh));
             }
         } catch (SQLException e) {
             legendaryDailyQuests.info("Failed to get user data.",Level.SEVERE,e);
@@ -200,6 +197,7 @@ public class MySQL extends DataProvider{
                     IntMapToStr(data.getRefresh()),
                     ProgressToStr(data.getProgressData())
             );
+
         } catch (SQLException e){
             legendaryDailyQuests.info("Failed to save user data.",Level.SEVERE,e);
         } finally {

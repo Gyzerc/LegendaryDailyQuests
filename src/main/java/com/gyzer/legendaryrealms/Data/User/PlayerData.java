@@ -120,7 +120,7 @@ public class PlayerData {
 
     public void checkQuests() {
         LegendaryDailyQuests.getLegendaryDailyQuests().getCategorizesManager().getCategorizes().forEach(categorize -> {
-            if (quests.containsKey(categorize.getId()) || categorize.getQuests().size() == 0){
+            if (quests.containsKey(categorize.getId()) || categorize.getQuests().size() > 0){
                 return;
             }
             LegendaryDailyQuestsAPI.randomPlayerQuests(uuid,categorize,new ArrayList<>());

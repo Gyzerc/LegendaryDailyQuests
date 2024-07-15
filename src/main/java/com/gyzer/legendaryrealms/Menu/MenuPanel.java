@@ -45,7 +45,7 @@ public class MenuPanel implements InventoryHolder {
             this.questAmount = 0;
             PlayerData data = LegendaryDailyQuestsAPI.getPlayerData(p);
             //检测是否本轮的任务还未刷新
-            if (data.getQuests().get(categorize.getId()).isEmpty()){
+            if (!data.getQuests().containsKey(categorize.getId())) {
                 if (categorize.getQuests().size() > 0){
                     LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(),categorize,new ArrayList<>());
                 }

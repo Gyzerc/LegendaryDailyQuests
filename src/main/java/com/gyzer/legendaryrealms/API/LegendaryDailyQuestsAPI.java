@@ -32,6 +32,7 @@ public class LegendaryDailyQuestsAPI {
         return LegendaryDailyQuests.getLegendaryDailyQuests().getPlayerDataManager().getPlayerData(uuid);
     }
     public static void randomPlayerQuests(UUID uuid, Categorize categorize , List<String> specials){
+        System.out.println("ran");
         PlayerData data = getPlayerData(uuid);
         String id = categorize.getId();
         data.getQuests().remove(id);
@@ -75,6 +76,7 @@ public class LegendaryDailyQuestsAPI {
         }
         data.getQuests().put(id,select);
         data.update(false);
+        System.out.println("refresh:" + uuid);
         //触发事件
         Bukkit.getScheduler().runTask(LegendaryDailyQuests.getLegendaryDailyQuests(),()->Bukkit.getPluginManager().callEvent(new PlayerDailyQuestsRefreshEvent(uuid, categorize.getId(), select)));
     }
