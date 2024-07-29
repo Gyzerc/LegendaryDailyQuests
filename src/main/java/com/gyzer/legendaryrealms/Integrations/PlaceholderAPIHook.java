@@ -8,13 +8,20 @@ import org.bukkit.entity.Player;
 
 public class PlaceholderAPIHook {
     private IntegrationsManager integrationsManager;
+    private boolean enable = false;
     public PlaceholderAPIHook(IntegrationsManager integrationsManager) {
         this.integrationsManager = integrationsManager;
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            enable = true;
             integrationsManager.msg("PlaceholderAPI");
         }
     }
-    public String getHolder(Player p,String input) {
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public String getHolder(Player p, String input) {
         return PlaceholderAPI.setPlaceholders(p,input);
     }
     public String getHolder(OfflinePlayer p,String input) {

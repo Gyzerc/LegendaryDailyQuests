@@ -1,6 +1,14 @@
 package com.gyzer.legendaryrealms.Menu;
 
+import com.gyzer.legendaryrealms.LegendaryDailyQuests;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MenuItem {
     private String id;
@@ -54,8 +62,24 @@ public class MenuItem {
         return id;
     }
 
-    public ItemStack getItem() {
-        return item;
+    public ItemStack getItem(Player p) {
+        ItemStack i = item.clone();
+        if (p != null) {
+            if (useHead) {
+                if (i.getType().equals(Material.PLAYER_HEAD)) {
+                    SkullMeta id = (SkullMeta) i.getItemMeta();
+                    id.setOwningPlayer(p);
+                    i.setItemMeta(id);
+                }
+            }
+            ItemMeta id = i.getItemMeta();
+            if (LegendaryDailyQuests.getLegendaryDailyQuests().getIntegrationsManager().getPlaceholderAPIHook().isEnable() && id.hasLore()) {
+                List<String> lore = id.getLore().stream().map(l -> LegendaryDailyQuests.getLegendaryDailyQuests().getIntegrationsManager().getPlaceholderAPIHook().getHolder(p,l)).collect(Collectors.toList());
+                id.setLore(lore);
+                i.setItemMeta(id);
+            }
+        }
+        return i;
     }
 
     public String getFuction() {

@@ -68,7 +68,7 @@ public class MenuPanel implements InventoryHolder {
         DrawEssentailSpecial(inv, menuItem -> {
             switch (menuItem.getFuction()){
                 case "refresh" :
-                    ItemStack i = menuItem.getItem().clone();
+                    ItemStack i = menuItem.getItem(p).clone();
                     i = new ReplaceUtils()
                             .addSinglePlaceHolder("refresh",""+data.getRefresh().getOrDefault(id,0))
                             .startReplace(i);
@@ -76,7 +76,7 @@ public class MenuPanel implements InventoryHolder {
                     menuItem.setPut(true);
                     break;
                 case "rewards" :
-                    i = menuItem.getItem().clone();
+                    i = menuItem.getItem(p).clone();
                     i = new ReplaceUtils()
                             .addSinglePlaceHolder("completeds",""+completeds.size())
                             .addSinglePlaceHolder("quests",""+quests.size())
@@ -89,7 +89,7 @@ public class MenuPanel implements InventoryHolder {
                         Quest quest = LegendaryDailyQuests.getLegendaryDailyQuests().getQuestsManager().getQuest(quests.get(questAmount));
                         if (quest != null) {
                             String questId = quest.getId();
-                            ItemStack mi = menuItem.getItem();
+                            ItemStack mi = menuItem.getItem(p);
                             String display = mi.getItemMeta().hasDisplayName() ? mi.getItemMeta().getDisplayName() : "%quest%";
 
                             i = new ItemStack(quest.getPreview_material(),quest.getPreview_amount());
@@ -260,10 +260,10 @@ public class MenuPanel implements InventoryHolder {
             public void run() {
                 for (Map.Entry<Integer,MenuItem> entry : loader.getItem().entrySet()){
                     MenuItem menuItem = entry.getValue();
-                    MenuItem newMenu = new MenuItem(menuItem.getId(),menuItem.getItem().clone(),menuItem.getFuction());
+                    MenuItem newMenu = new MenuItem(menuItem.getId(),menuItem.getItem(p).clone(),menuItem.getFuction(), menuItem.isUseHead());
                     consumer.accept(newMenu);
-                    if (newMenu.isPut()) {
-                        inv.setItem(entry.getKey(),newMenu.getItem());
+                    if (newMenu.isPut() || !newMenu.getFuction().equalsIgnoreCase("quest")) {
+                        inv.setItem(entry.getKey(),newMenu.getItem(p));
                     }
                     if (newMenu.getValue() != null){
                         stringStore.put(entry.getKey(), newMenu.getValue());

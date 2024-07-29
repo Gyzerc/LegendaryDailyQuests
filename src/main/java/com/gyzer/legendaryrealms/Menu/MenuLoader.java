@@ -55,6 +55,7 @@ public class MenuLoader {
                 int amount = sec.getInt(key+".amount",1);
                 int data = sec.getInt(key+".data",0);
                 int model = sec.getInt(key+".model",0);
+                boolean skull = sec.getBoolean(key+".player-skull",false);
                 List<String> lore = MsgUtils.msg(sec.getStringList(key+".lore"));
                 String fuction = sec.getString(key+".function.type","none");
                 ItemStack i = new ItemStack(material,amount,(short) data);
@@ -65,7 +66,7 @@ public class MenuLoader {
                     id.setCustomModelData(model);
                 }
                 i.setItemMeta(id);
-                MenuItem menuItem = new MenuItem(key,i,fuction);
+                MenuItem menuItem = new MenuItem(key,i,fuction,skull);
                 if (sec.getBoolean(key+".playerhead",false)){
                     menuItem.setUseHead(true);
                 }
