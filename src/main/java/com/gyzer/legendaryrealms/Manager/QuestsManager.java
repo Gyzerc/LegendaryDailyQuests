@@ -57,7 +57,7 @@ public class QuestsManager {
                 List<String> rewards = yml.getStringList("reward.run");
                 String rarityStr = yml.getString("rarity");
                 QuestRarity rarity = rarityStr != null ? (legendaryDailyQuests.getQuestRaritiesManager().getRarity(rarityStr) != null ? legendaryDailyQuests.getQuestRaritiesManager().getRarity(rarityStr) : legendaryDailyQuests.getQuestRaritiesManager().getLowest()) : legendaryDailyQuests.getQuestRaritiesManager().getLowest();
-
+                int completeGoal = yml.getInt("quest-complete-goal-amount",-1);
 
                 ConfigurationSection section = yml.getConfigurationSection("goals");
                 if (section == null){
@@ -83,7 +83,7 @@ public class QuestsManager {
                     legendaryDailyQuests.info("The goal of this task was not set correctly, and loading the task has been skipped: "+QuestFile.getName(), Level.SEVERE);
                     continue;
                 }
-                caches.put(id,new Quest(id,display,preview_material,preview_model,preview_amount,preview_lore,preview_rewards,objectives,rewards,rarity));
+                caches.put(id,new Quest(id,display,preview_material,preview_model,preview_amount,preview_lore,preview_rewards,objectives,rewards,rarity,completeGoal));
                 legendaryDailyQuests.sendConsoleMessage(language.PLUGIN+" &aSuccessfully load quest &f"+id+"");
                 a++;
              }

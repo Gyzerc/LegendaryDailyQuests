@@ -6,7 +6,7 @@
 
     <groupId>com.gyzer.legendaryrealms</groupId>
     <artifactId>LegendaryDailyQuests</artifactId>
-    <version>1.0.9</version>
+    <version>1.1.0</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

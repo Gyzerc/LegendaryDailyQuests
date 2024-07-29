@@ -18,7 +18,8 @@ public class Quest {
     private LinkedList<QuestObjective> objectives;
     private List<String> rewards;
     private QuestRarity rarity;
-    public Quest(String id, String display,Material preview_material, int preview_model, int preview_amount, List<String> preview_lore, List<String> preview_reward, LinkedList<QuestObjective> objectives, List<String> rewards,QuestRarity rarity) {
+    private int completeGoals;
+    public Quest(String id, String display,Material preview_material, int preview_model, int preview_amount, List<String> preview_lore, List<String> preview_reward, LinkedList<QuestObjective> objectives, List<String> rewards,QuestRarity rarity,int completeGoals) {
         this.id = id;
         this.display = display;
         this.preview_material = preview_material;
@@ -29,6 +30,11 @@ public class Quest {
         this.objectives = objectives;
         this.rewards = rewards;
         this.rarity = rarity;
+        this.completeGoals = completeGoals;
+    }
+
+    public int getCompleteGoals() {
+        return completeGoals;
     }
 
     public QuestRarity getRarity() {

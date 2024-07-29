@@ -60,12 +60,26 @@ public abstract class GoalChecker{
 
 
 
+
         boolean completed = true;
+        int needAmount = quest.getCompleteGoals();
+        int completed_amount = 0;
+
         for (QuestObjective objective : quest.getObjectives()){
             String id = objective.getId();
             if (objective.getAmount() > progressData.getProgress(questId,id)){
                 completed = false;
-                break;
+                if (needAmount == -1) {
+                    break;
+                }
+            } else {
+                if (needAmount > 0) {
+                    completed_amount+=1;
+                    if (completed_amount >= needAmount) {
+                        completed = true;
+                        break;
+                    }
+                }
             }
         }
         if (completed) {

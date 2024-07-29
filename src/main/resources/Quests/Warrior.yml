@@ -7,6 +7,7 @@ description:
   - " &7&l· &#bcd2eeUse shield blocking projectile damages &f(&c%progress_sumbit2%/100.0&f)"
 reward_description:
   - " &7&l· &#9AFF9AMoney ×350"
+quest-complete-goal-amount: -1
 goals:
   #object id
   sumbit:

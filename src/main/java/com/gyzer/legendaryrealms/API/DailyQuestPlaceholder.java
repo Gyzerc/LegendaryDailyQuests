@@ -31,7 +31,7 @@ public class DailyQuestPlaceholder extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getVersion() {
-        return "1.0.9";
+        return "1.1.0";
     }
 
     @Override
