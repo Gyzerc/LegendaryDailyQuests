@@ -43,7 +43,29 @@ public class MenuPanel implements InventoryHolder {
         if (loader != null) {
             this.inv = Bukkit.createInventory(this,loader.getSize(),loader.getTitle());
             this.questAmount = 0;
+
+
             PlayerData data = LegendaryDailyQuestsAPI.getPlayerData(p);
+            UUID server = legendaryDailyQuests.getDataProvider().getLastRefreshUID(categorize.getId()).orElse(UUID.randomUUID());
+            //检测是否可以刷新
+            if (data.getCycles().containsKey(categorize.getId())) {
+                UUID last = data.getCycles().get(categorize.getId());
+                if (!last.equals(server)){
+                    HashMap<String,UUID> cycles = data.getCycles();
+                    cycles.put(categorize.getId(),server);
+                    data.setCycles(cycles);
+                    data.update(false);
+                    LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(),categorize,new ArrayList<>());
+                }
+            } else {
+                HashMap<String,UUID> cycles = data.getCycles();
+                cycles.put(categorize.getId(),server);
+                data.setCycles(cycles);
+                data.update(false);
+
+                LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(),categorize,new ArrayList<>());
+            }
+
             //检测是否本轮的任务还未刷新
             if (!data.getQuests().containsKey(categorize.getId())) {
                 if (categorize.getQuests().size() > 0){
@@ -153,8 +175,20 @@ public class MenuPanel implements InventoryHolder {
         return false;
     }
 
+
+    long time = 0;
+    private boolean isCooldown(Player p) {
+        if (System.currentTimeMillis() + 500 > time) {
+            return false;
+        }
+        time = System.currentTimeMillis();
+        return true;
+    }
     public void onClick(InventoryClickEvent e) {
         if (e.getRawSlot() >= 0) {
+            if (isCooldown(p)) {
+                return;
+            }
             MenuItem menuItem = getMenuItem(e.getRawSlot());
             if (menuItem != null){
                 PlayerData data = LegendaryDailyQuestsAPI.getPlayerData(p);

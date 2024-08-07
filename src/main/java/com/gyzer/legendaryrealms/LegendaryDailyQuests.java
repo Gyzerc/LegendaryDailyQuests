@@ -44,14 +44,17 @@ public class LegendaryDailyQuests extends JavaPlugin {
         Bukkit.getPluginCommand("LegendaryDailyQuests").setTabCompleter(new DailyQuestsCommands());
         DailyQuestsCommands.register();
 
-        sync(()->{
-            Calendar calendar = Calendar.getInstance();
-            int today = calendar.get(Calendar.DATE);
-            int record = dataProvider.getDate("last");
-            if (today != record){
-                Bukkit.getScheduler().runTask(this,()->Bukkit.getPluginManager().callEvent(new NewDayEvent(today)));
-            }
-        },0,20 * 60);
+        if (configurationsManager.getConfig().REFRESH_ENABLE) {
+            sync(() -> {
+                Calendar calendar = Calendar.getInstance();
+                int today = calendar.get(Calendar.DATE);
+                int record = dataProvider.getDate("last");
+                if (today != record) {
+                    Bukkit.getScheduler().runTask(this, () -> Bukkit.getPluginManager().callEvent(new NewDayEvent(today)));
+                }
+            }, 0, 20 * 60);
+        }
+
         sync(()->{
             Bukkit.getOnlinePlayers().forEach(player -> {
                 new GoalNoCheck().check(player, ObjectiveType.DELAY,1);

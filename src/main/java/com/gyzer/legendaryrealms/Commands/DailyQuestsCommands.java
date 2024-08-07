@@ -24,6 +24,7 @@ public class DailyQuestsCommands implements CommandExecutor, TabExecutor {
         commands.put("reload",new ReloadCommand());
         commands.put("refresh",new RefreshCommand());
         commands.put("trigger",new TriggerCommand());
+        commands.put("refresh-all",new RefreshAllCommand());
         commands.put("top",new TopCommand());
         commands.put("complete", new CompleteCommnd());
         commands.put("reset",new ResetCommand());

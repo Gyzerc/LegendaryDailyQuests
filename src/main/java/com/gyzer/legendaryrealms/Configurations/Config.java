@@ -18,6 +18,7 @@ public class Config extends ConfigurationProvider{
     public Optional<Sound> completed;
     public Optional<Sound> claim;
     public int MAX_ROUND;
+    public boolean REFRESH_ENABLE;
     @Override
     protected void readDefault() {
         Chinese = getValue("lang","English").equals("Chinese");
@@ -28,6 +29,8 @@ public class Config extends ConfigurationProvider{
         completed = getSound(getValue("sounds.completed","entity_firework_rocket_launch"));
         claim = getSound(getValue("sounds.claim","item_totem_use"));
         MAX_ROUND = getValue("refresh-round-max",20);
+
+        REFRESH_ENABLE = getValue("refresh-enable",true);
     }
 
     private Optional<Sound> getSound(String sound){

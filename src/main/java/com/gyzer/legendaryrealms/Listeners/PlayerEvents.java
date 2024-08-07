@@ -188,10 +188,10 @@ public class PlayerEvents implements Listener {
                 double blocking = e.getDamage(EntityDamageEvent.DamageModifier.BLOCKING);
                 if (blocking != 0) {
                     //格挡伤害任务
-                    new GoalNoCheck().check(p,ObjectiveType.BLOCKING,blocking);
+                    new GoalNoCheck().check(p,ObjectiveType.BLOCKING,Math.abs(blocking));
                     //格挡远程伤害任务
                     if (e.getCause().equals(EntityDamageEvent.DamageCause.PROJECTILE)) {
-                        new GoalNoCheck().check(p,ObjectiveType.BLOCKING_PROJECTILE,blocking);
+                        new GoalNoCheck().check(p,ObjectiveType.BLOCKING_PROJECTILE,Math.abs(blocking));
                     }
                 }
             }

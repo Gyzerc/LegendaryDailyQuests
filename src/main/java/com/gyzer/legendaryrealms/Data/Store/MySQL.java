@@ -27,6 +27,7 @@ public class MySQL extends DataProvider{
         createTable(DatabaseTable.USER_DATA);
         createTable(DatabaseTable.DATE_DATA);
         createTable(DatabaseTable.SYSTEM_DATA);
+        createTable(DatabaseTable.REFRESH_DATA);
     }
 
     @Override
@@ -39,6 +40,38 @@ public class MySQL extends DataProvider{
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public Optional<UUID> getLastRefreshUID(String categorize) {
+        Connection connection = null;
+        try {
+            connection = connectPool.getConnection();
+            Optional<ResultSet> resultSet = getDataStringResult(connection,DatabaseTable.REFRESH_DATA.getBuilder(),categorize);
+            if (resultSet.isPresent()) {
+                ResultSet rs = resultSet.get();
+                return Optional.of(UUID.fromString(rs.getString("uuid")));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            closeCon(connection);
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public void setRefreshUID(String categorize, UUID uuid) {
+        Connection connection = null;
+        try {
+            connection = connectPool.getConnection();
+            setData(connection,DatabaseTable.REFRESH_DATA.getBuilder(), categorize,categorize,uuid.toString());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            closeCon(connection);
+        }
+    }
+
     @Override
     public void setConnection() {
         YamlConfiguration yml = legendaryDailyQuests.getConfigurationsManager().getConfig().getYml();
@@ -163,6 +196,7 @@ public class MySQL extends DataProvider{
                 String claimStr = rs.getString("claims");
                 String refreshStr = rs.getString("refresh");
                 String progressStr = rs.getString("progress");
+                String cycle = rs.getString("cycle");
 
                 HashMap<String, LinkedList<String>> quests = StrToMapLink(questsStr);
                 HashMap<String, List<String>> accepts = StrToMap(acceptsStr);
@@ -170,8 +204,9 @@ public class MySQL extends DataProvider{
                 HashMap<String, ProgressData> process = toProgress(progressStr);
                 HashMap<String, Integer> refresh = StrToIntMap(refreshStr);
                 HashMap<String, Boolean> claimData = StrToClaimData(claimStr);
+                HashMap<String,UUID> cycles = StrToUUIDMap(cycle);
 
-                return Optional.of(new PlayerData(uuid, quests, accepts, completeds, process, claimData, refresh));
+                return Optional.of(new PlayerData(uuid, quests, accepts, completeds, process, claimData, refresh,cycles));
             }
         } catch (SQLException e) {
             legendaryDailyQuests.info("Failed to get user data.",Level.SEVERE,e);
@@ -184,9 +219,7 @@ public class MySQL extends DataProvider{
     @Override
     public void savePlayerData(PlayerData data) {
         Connection connection = null;
-
         try {
-
             connection = connectPool.getConnection();
             setData(connection,DatabaseTable.USER_DATA.getBuilder(), data.getUuid().toString(),
                     data.getUuid().toString(),
@@ -195,9 +228,9 @@ public class MySQL extends DataProvider{
                     mapToStr(data.getCompleteds()),
                     claimDataToStr(data.getClaimFinallyRewards()),
                     IntMapToStr(data.getRefresh()),
-                    ProgressToStr(data.getProgressData())
+                    ProgressToStr(data.getProgressData()),
+                    uuidMapToStr(data.getCycles())
             );
-
         } catch (SQLException e){
             legendaryDailyQuests.info("Failed to save user data.",Level.SEVERE,e);
         } finally {

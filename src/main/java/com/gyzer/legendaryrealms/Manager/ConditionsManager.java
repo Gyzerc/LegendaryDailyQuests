@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 
 public class ConditionsManager {
     private final LegendaryDailyQuests legendaryDailyQuests = LegendaryDailyQuests.getLegendaryDailyQuests();
-    private final IntegrationsManager integrationsManager = legendaryDailyQuests.getIntegrationsManager();
     private static HashMap<String, Condition> caches;
     public ConditionsManager() {
         caches = new HashMap<>();
@@ -203,30 +202,23 @@ public class ConditionsManager {
     }
     public boolean papiCompare(Player p,String dealArgWithOutTag)
     {
-        Pattern r = Pattern.compile("\\W+");
-        Matcher m = r.matcher(dealArgWithOutTag);
-        String tag="";
-        while (m.find())
-        {
-            tag=m.group();
-        }
-        String deal=dealArgWithOutTag.replace(tag,";");
-        String[] values = deal.split(";");
+        String[] values = dealArgWithOutTag.split(";");
+        String tag = values[1];
         switch (tag) {
             case ">=" :
-                double input =values.length == 2 ? Double.parseDouble(values[1]) : 0.0;
-                return Double.parseDouble(integrationsManager.getPlaceholderAPIHook().getHolder(p,values[0])) >= input;
+                double input = values.length == 3 ? Double.parseDouble(values[2]) : 0.0;
+                return Double.parseDouble(LegendaryDailyQuests.getLegendaryDailyQuests().getIntegrationsManager().getPlaceholderAPIHook().getHolder(p,values[0])) >= input;
             case ">" :
-                input =values.length == 2 ? Double.parseDouble(values[1]) : 0.0;
-                return Double.parseDouble(integrationsManager.getPlaceholderAPIHook().getHolder(p,values[0])) > input;
+                input =values.length == 3 ? Double.parseDouble(values[2]) : 0.0;
+                return Double.parseDouble(LegendaryDailyQuests.getLegendaryDailyQuests().getIntegrationsManager().getPlaceholderAPIHook().getHolder(p,values[0])) > input;
             case "<=" :
-                input =values.length == 2 ? Double.parseDouble(values[1]) : 0.0;
-                return Double.parseDouble(integrationsManager.getPlaceholderAPIHook().getHolder(p,values[0])) <= input;
+                input =values.length == 3 ? Double.parseDouble(values[2]) : 0.0;
+                return Double.parseDouble(LegendaryDailyQuests.getLegendaryDailyQuests().getIntegrationsManager().getPlaceholderAPIHook().getHolder(p,values[0])) <= input;
             case "<" :
-                input = values.length == 2 ? Double.parseDouble(values[1]) : 0.0;
-                return Double.parseDouble(integrationsManager.getPlaceholderAPIHook().getHolder(p,values[0])) < input;
+                input = values.length == 3 ? Double.parseDouble(values[2]) : 0.0;
+                return Double.parseDouble(LegendaryDailyQuests.getLegendaryDailyQuests().getIntegrationsManager().getPlaceholderAPIHook().getHolder(p,values[0])) < input;
             case "=":
-                return integrationsManager.getPlaceholderAPIHook().getHolder(p,values[0]).equals((values.length == 2 ? values[1] : ""));
+                return LegendaryDailyQuests.getLegendaryDailyQuests().getIntegrationsManager().getPlaceholderAPIHook().getHolder(p,values[0]).equals((values.length == 3 ? values[2] : ""));
         }
         return false;
     }

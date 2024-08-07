@@ -26,6 +26,8 @@ public abstract class DataProvider {
     public abstract CompletedData getCompletedData();
     public abstract void setCompletedData(CompletedData data);
     public abstract void closeCon(Connection connection);
+    public abstract Optional<UUID> getLastRefreshUID(String categorize);
+    public abstract void setRefreshUID(String categorize,UUID uuid);
 
     public void checkTable(DatabaseTable table, Connection connection) {
         try {
@@ -111,6 +113,26 @@ public abstract class DataProvider {
         }
         return builder.toString();
     }
+    public String uuidMapToStr(HashMap<String, UUID> map){
+        StringBuilder builder = new StringBuilder();
+        if (!map.isEmpty()){
+            map.forEach(((s, strings) -> builder.append(s).append("=").append(strings.toString()).append(",")));
+        }
+        return builder.toString();
+    }
+    public HashMap<String,UUID> StrToUUIDMap(String str) {
+        HashMap<String,UUID> map = new HashMap<>();
+        if (str != null &&!str.isEmpty()) {
+            for (String arg : str.split(",")) {
+                String[] values = arg.split("=");
+                if (values.length == 2) {
+                    map.put(values[0],UUID.fromString(values[1]));
+                }
+            }
+        }
+        return map;
+    }
+
     public<T> String LinkMapToStr(HashMap<String, LinkedList<T>> map){
         StringBuilder builder = new StringBuilder();
         if (!map.isEmpty()){
@@ -152,7 +174,19 @@ public abstract class DataProvider {
         }
         return builder.toString();
     }
-
+    public HashMap<String,UUID> StrToMapUUID(String str){
+        HashMap<String,UUID> map = new HashMap<>();
+        if (str != null && !str.isEmpty()){
+            for (String listStr : StringUtils.split(str,'{','}')){
+                String[] args = listStr.split("=");
+                String name = args[0];
+                if (args.length > 1){
+                    map.put(name,UUID.fromString(args[1]));
+                }
+            }
+        }
+        return map;
+    }
     public HashMap<String,LinkedList<String>> StrToMapLink(String str){
         HashMap<String,LinkedList<String>> map = new HashMap<>();
         if (str != null && !str.isEmpty()){
@@ -260,6 +294,7 @@ public abstract class DataProvider {
                         .addTextKey("claims")
                         .addTextKey("refresh")
                         .addTextKey("progress")
+                        .addTextKey("cycle")
                         .build("uuid")
         ),
         DATE_DATA("LegendaryDailyQuests_Date",
@@ -271,7 +306,12 @@ public abstract class DataProvider {
                 new Builder("LegendaryDailyQuests_System")
                         .addVarcharKey("name",64)
                         .addTextKey("data")
-                        .build("name"));
+                        .build("name")),
+        REFRESH_DATA("LegendaryDailyQuests_RefreshCycles",
+                new Builder("LegendaryDailyQuests_RefreshCycles")
+                        .addVarcharKey("id",32)
+                        .addTextKey("uuid")
+                        .build("id"));
 
 
         private String name;

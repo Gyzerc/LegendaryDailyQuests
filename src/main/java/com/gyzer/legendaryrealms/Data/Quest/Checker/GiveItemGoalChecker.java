@@ -16,7 +16,6 @@ public class GiveItemGoalChecker extends GoalChecker {
         int current = (int)now;
         if (has > 0) {
             int take =  Math.min(has,( need - current ));
-            check.takePlayerInventory(p , take);
             return take;
         }
         return -1;

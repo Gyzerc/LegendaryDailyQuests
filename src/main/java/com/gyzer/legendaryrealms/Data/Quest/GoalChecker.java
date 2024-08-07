@@ -11,6 +11,7 @@ import com.gyzer.legendaryrealms.Data.Quest.Progress.ProgressData;
 import com.gyzer.legendaryrealms.Data.Quest.Quest;
 import com.gyzer.legendaryrealms.Data.User.PlayerData;
 import com.gyzer.legendaryrealms.LegendaryDailyQuests;
+import com.gyzer.legendaryrealms.Utils.ItemCheck;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -159,8 +160,11 @@ public abstract class GoalChecker{
                     //检测玩家背包是否含有指定物品
                     int take =  canPass(p,objectiveType,current, objectiveType.getAmount());
                     if (take > 0) {
-                        addProgress(p, data, cat, quest, id, take);
-                        hasTaken = true;
+                        if ( (quest.getCompleteGoals() != -1 && (take + current) >= need) || quest.getCompleteGoals() == -1) {
+                            new ItemCheck(objectiveType.getValue()).takePlayerInventory(p,take);
+                            addProgress(p, data, cat, quest, id, take);
+                            hasTaken = true;
+                        }
                     }
                 }
             }

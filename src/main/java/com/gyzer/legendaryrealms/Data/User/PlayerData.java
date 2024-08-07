@@ -17,6 +17,11 @@ public class PlayerData {
     private HashMap<String, ProgressData> progressData;
     private HashMap<String, Boolean> claimFinallyRewards;
     private HashMap<String, Integer> refresh;
+    private HashMap<String, UUID> cycles;
+
+    public void setCycles(HashMap<String, UUID> cycles) {
+        this.cycles = cycles;
+    }
 
     public PlayerData(UUID uuid) {
         this.uuid = uuid;
@@ -26,9 +31,10 @@ public class PlayerData {
         this.claimFinallyRewards = new HashMap<>();
         this.refresh = new HashMap<>();
         this.progressData = new HashMap<>();
+        this.cycles = new HashMap<>();
     }
 
-    public PlayerData(UUID uuid, HashMap<String, LinkedList<String>> quests, HashMap<String, List<String>> accepts, HashMap<String, List<String>> completeds, HashMap<String, ProgressData> progressData, HashMap<String, Boolean> claimFinallyRewards,HashMap<String,Integer> refresh) {
+    public PlayerData(UUID uuid, HashMap<String, LinkedList<String>> quests, HashMap<String, List<String>> accepts, HashMap<String, List<String>> completeds, HashMap<String, ProgressData> progressData, HashMap<String, Boolean> claimFinallyRewards,HashMap<String,Integer> refresh,HashMap<String,UUID> cycles) {
         this.uuid = uuid;
         this.quests = quests;
         this.accepts = accepts;
@@ -36,6 +42,11 @@ public class PlayerData {
         this.progressData = progressData;
         this.claimFinallyRewards = claimFinallyRewards;
         this.refresh = refresh;
+        this.cycles = cycles;
+    }
+
+    public HashMap<String, UUID> getCycles() {
+        return cycles;
     }
 
     public void setRefresh(HashMap<String, Integer> refresh) {
@@ -66,6 +77,18 @@ public class PlayerData {
         return progressData.getOrDefault(cat,new ProgressData(new HashMap<>()));
     }
 
+    public void clearQuests(String cat) {
+        quests.remove(cat);
+    }
+    public void clearClaimed(String cat) {
+        claimFinallyRewards.remove(cat);
+    }
+    public void clearAccepted(String cat) {
+        accepts.remove(cat);
+    }
+    public void clearCompleted(String cat) {
+        completeds.remove(cat);
+    }
     public void takeRefresh(String cat,int amount) {
         int refresh = this.refresh.getOrDefault(cat,0);
         this.refresh.put(cat,Math.max(0,(refresh-amount)));

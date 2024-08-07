@@ -41,6 +41,7 @@ public class Language extends ConfigurationProvider {
     public String notOnline;
     public String default_no_player;
     public String broad_when_accept;
+    public String refresh_all;
 
     public Language(boolean Chinese) {
         super("./plugins/LegendaryDailyQuests", "", "Language.yml");
@@ -76,6 +77,8 @@ public class Language extends ConfigurationProvider {
                         "&7 - /lqd refresh add/take/set [分类ID] (玩家ID) (数量) &e操作玩家指定分类的刷新机会.",
                         "&7 - /ldq trigger [玩家] [分类ID] [任务ID] [目标ID] [数量] &e增加玩家指定任务 Trigger 类型的目标进度值.（该指令不会有提示语）",
                         "&7 - /ldq complete [玩家] [分类ID] [任务ID] &e强制完成玩家指定任务",
+                        "&7 - /ldq refresh-all [分类ID] &e强制刷新全服玩家该类别的数据",
+
                         "&7 - /ldq reset [玩家] [分类ID] [任务ID] &e强制重置玩家指定任务"
                 )
                 ,Arrays.asList(
@@ -85,6 +88,7 @@ public class Language extends ConfigurationProvider {
                         "&7 - /lqd refresh add/take/set [categorize] (player) (amount) &eOperate the player's specified category refresh points.",
                         "&7 - /ldq trigger [player] [categorize] [quest] [goal] [amount] &eIncrease the target progress value of the &eTrigger &7type for player specified quest (This command will not have any tip message return)",
                         "&7 - /ldq complete [player] [categorize] [quest] &eForce players to complete quest",
+                        "&7 - /ldq refresh-all [categorize] &eForce refresh of data for players in this category across the entire server",
                         "&7 - /ldq reset [player] [categorize] [quest] &eForce players to reset quest"
                 ),useChines));
         top = MsgUtils.msg(getValue("top",Arrays.asList(
@@ -148,6 +152,7 @@ public class Language extends ConfigurationProvider {
         refresh_set = MsgUtils.msg(getValue("refresh.set","&e你使玩家 &f%player% &e的 %categorize% &e刷新次数设置为 &f%amount%","&eYou have set the refresh points of player &f%player% &e's %categorize% &eby &f%amount%",useChines));
         default_no_player = MsgUtils.msg(getValue("default.no-player","&7暂无玩家","&7No Player.",useChines));
         broad_when_accept = MsgUtils.msg(getValue("broad-when-accept","&e玩家%player%接受了个%rarity%&e级别的每日任务 &f%quest%","&ePlayer %player% accepted daily quest at the %rarity% &elevel: %quest%",useChines));
+        refresh_all = MsgUtils.msg(getValue("refresh.all","&6成功刷新该类别的所有玩家数据","&6Successfully refreshed all player data for this category",useChines));
         saveYml();
     }
 

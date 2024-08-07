@@ -28,11 +28,13 @@ public class SQLite extends DataProvider {
         createTable(DatabaseTable.DATE_DATA);
         createTable(DatabaseTable.USER_DATA);
         createTable(DatabaseTable.SYSTEM_DATA);
+        createTable(DatabaseTable.REFRESH_DATA);
     }
 
     @Override
     public void createTable(DatabaseTable table) {
         if (isExist(table)){
+            checkTable(table,connection);
             return;
         }
         if (executeUpdate(table.getBuilder().toString())){
@@ -105,6 +107,7 @@ public class SQLite extends DataProvider {
                 String claimStr = rs.getString("claims");
                 String refreshStr = rs.getString("refresh");
                 String progressStr = rs.getString("progress");
+                String cycles = rs.getString("cycle");
 
                 HashMap<String, LinkedList<String>> quests = StrToMapLink(questsStr);
                 HashMap<String, List<String>> accepts = StrToMap(acceptsStr);
@@ -112,7 +115,8 @@ public class SQLite extends DataProvider {
                 HashMap<String, ProgressData> process = toProgress(progressStr);
                 HashMap<String, Integer> refresh = StrToIntMap(refreshStr);
                 HashMap<String, Boolean> claimData = StrToClaimData(claimStr);
-                return Optional.of(new PlayerData(uuid, quests, accepts, completeds, process, claimData, refresh));
+                HashMap<String,UUID> cyclesMap = StrToUUIDMap(cycles);
+                return Optional.of(new PlayerData(uuid, quests, accepts, completeds, process, claimData, refresh,cyclesMap));
             }
         } catch (SQLException e) {
             legendaryDailyQuests.info("Failed to get user data.",Level.SEVERE,e);
@@ -129,7 +133,8 @@ public class SQLite extends DataProvider {
                     mapToStr(data.getCompleteds()),
                     claimDataToStr(data.getClaimFinallyRewards()),
                     IntMapToStr(data.getRefresh()),
-                    ProgressToStr(data.getProgressData())
+                    ProgressToStr(data.getProgressData()),
+                    uuidMapToStr(data.getCycles())
             );
     }
 
@@ -185,6 +190,25 @@ public class SQLite extends DataProvider {
     @Override
     public void closeCon(Connection connection) {
 
+    }
+
+    @Override
+    public Optional<UUID> getLastRefreshUID(String categorize) {
+        Optional<ResultSet> resultSet =  getDataStringResult(connection,DatabaseTable.REFRESH_DATA.getBuilder(), categorize);
+        if (resultSet.isPresent()) {
+            ResultSet rs = resultSet.get();
+            try {
+                return Optional.of(UUID.fromString(rs.getString("uuid")));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public void setRefreshUID(String categorize, UUID uuid) {
+        setData(connection,DatabaseTable.REFRESH_DATA.getBuilder(), categorize,categorize,uuid.toString());
     }
 
     @Override
