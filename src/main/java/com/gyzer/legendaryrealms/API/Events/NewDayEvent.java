@@ -12,7 +12,7 @@ public class NewDayEvent extends Event {
         return handlers;
     }
     public static HandlerList getHandlerList() {return handlers;}
-    private int date;
+    private final int date;
 
     public NewDayEvent(int date) {
         this.date = date;

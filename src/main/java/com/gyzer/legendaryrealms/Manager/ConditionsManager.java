@@ -14,12 +14,12 @@ import java.util.regex.Pattern;
 public class ConditionsManager {
     private final LegendaryDailyQuests legendaryDailyQuests = LegendaryDailyQuests.getLegendaryDailyQuests();
     private static HashMap<String, Condition> caches;
+
+    @SuppressWarnings("deprecation")
     public ConditionsManager() {
         caches = new HashMap<>();
         //[y]
-        registerCondition(new Condition("y",conditionCompare -> {
-            conditionCompare.setaBoolean(MathCompare(conditionCompare.getWithOutTagStr(), conditionCompare.getPlayer().getLocation().getBlockY()));
-        }));
+        registerCondition(new Condition("y",conditionCompare -> conditionCompare.setaBoolean(MathCompare(conditionCompare.getWithOutTagStr(), conditionCompare.getPlayer().getLocation().getBlockY()))));
         //[health]
         registerCondition(new Condition("health", conditionCompare -> {
             String inputStr = conditionCompare.getWithOutTagStr();
@@ -52,9 +52,7 @@ public class ConditionsManager {
         //[vehicle]
         registerCondition(new Condition("vehicle", conditionCompare -> conditionCompare.setaBoolean(conditionCompare.getPlayer().isInsideVehicle())));
         //[chance]
-        registerCondition(new Condition("chance", conditionCompare -> {
-            conditionCompare.setaBoolean((new Random().nextInt(100)) <= Integer.parseInt(conditionCompare.getWithOutTagStr()));
-        }));
+        registerCondition(new Condition("chance", conditionCompare -> conditionCompare.setaBoolean((new Random().nextInt(100)) <= Integer.parseInt(conditionCompare.getWithOutTagStr()))));
         //[stand]
         registerCondition(new Condition("stand",conditionCompare -> {
             Block block = conditionCompare.getPlayer().getLocation().getBlock();
@@ -127,14 +125,10 @@ public class ConditionsManager {
             conditionCompare.setaBoolean(check.Compare(conditionCompare.getPlayer().getInventory().getBoots()));
         }));
         //[placeholderapi]
-        registerCondition(new Condition("placeholderapi",conditionCompare -> {
-            conditionCompare.setaBoolean(papiCompare(conditionCompare.getPlayer(),conditionCompare.getWithOutTagStr()));
-        }));
+        registerCondition(new Condition("placeholderapi",conditionCompare -> conditionCompare.setaBoolean(papiCompare(conditionCompare.getPlayer(),conditionCompare.getWithOutTagStr()))));
         //[swim]
         if (legendaryDailyQuests.version_high) {
-            registerCondition(new Condition("swim", conditionCompare -> {
-                conditionCompare.setaBoolean(conditionCompare.getPlayer().isSwimming());
-            }));
+            registerCondition(new Condition("swim", conditionCompare -> conditionCompare.setaBoolean(conditionCompare.getPlayer().isSwimming())));
         }
 
     }

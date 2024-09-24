@@ -1,10 +1,8 @@
 package com.gyzer.legendaryrealms.Commands.SubCommands;
 
-import com.gyzer.legendaryrealms.API.LegendaryDailyQuestsAPI;
 import com.gyzer.legendaryrealms.Commands.CommandTabBuilder;
 import com.gyzer.legendaryrealms.Data.Quest.Categorize;
 import com.gyzer.legendaryrealms.Data.System.CompletedData;
-import com.gyzer.legendaryrealms.LegendaryDailyQuests;
 import com.gyzer.legendaryrealms.Utils.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;

@@ -1,18 +1,15 @@
 package com.gyzer.legendaryrealms.Manager;
 
-import com.gyzer.legendaryrealms.Data.User.LoginData;
 import com.gyzer.legendaryrealms.Data.User.PlayerData;
 import com.gyzer.legendaryrealms.LegendaryDailyQuests;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.UUID;
 
 public class PlayerDataManager {
     final LegendaryDailyQuests legendaryDailyQuests = LegendaryDailyQuests.getLegendaryDailyQuests();
-    private HashMap<UUID, PlayerData> caches;
+    private final HashMap<UUID, PlayerData> caches;
 
     public PlayerDataManager() {
         caches = new HashMap<>();

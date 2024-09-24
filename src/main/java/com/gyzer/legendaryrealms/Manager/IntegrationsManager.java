@@ -9,8 +9,8 @@ import org.bukkit.Bukkit;
 import java.util.logging.Level;
 
 public class IntegrationsManager {
-    private VaultHook vaultHook;
-    private PlaceholderAPIHook placeholderAPIHook;
+    private final VaultHook vaultHook;
+    private final PlaceholderAPIHook placeholderAPIHook;
     public IntegrationsManager() {
         placeholderAPIHook = new PlaceholderAPIHook(this);
         vaultHook = new VaultHook(this);
@@ -23,6 +23,7 @@ public class IntegrationsManager {
             msg("mcMMO");
         }
     }
+
     public VaultHook getVaultHook() {
         return vaultHook;
     }

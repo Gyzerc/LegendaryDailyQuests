@@ -16,10 +16,10 @@ import java.util.stream.Collectors;
 public abstract class LegendaryCommand {
     public final LegendaryDailyQuests legendaryDailyQuests = LegendaryDailyQuests.getLegendaryDailyQuests();
     public final Language lang = legendaryDailyQuests.getConfigurationsManager().getLanguage();
-    private String permission;
-    private String command;
-    private List<Integer> length;
-    private boolean admin;
+    private final String permission;
+    private final String command;
+    private final List<Integer> length;
+    private final boolean admin;
 
     public LegendaryCommand(String permission, String command, int length, boolean admin) {
         this.permission = permission;
@@ -54,6 +54,7 @@ public abstract class LegendaryCommand {
         return admin;
     }
 
+    @SuppressWarnings("deprecation")
     public OfflinePlayer getPlayer(String name) {
         OfflinePlayer p = Bukkit.getPlayerExact(name);
         if (p == null) {
@@ -83,14 +84,14 @@ public abstract class LegendaryCommand {
                 for (String id : data.getAccepts(cat)) {
                     Quest quest = legendaryDailyQuests.getQuestsManager().getQuest(id);
                     quest.getObjectives().forEach(o -> {
-                        if (type == null || (type != null && o.getType().equals(type))) {
+                        if (type == null || (o.getType().equals(type))) {
                             list.add(id);
                         }
                     });
                 }
-                return list.isEmpty() ? Arrays.asList("NONE...") : list;
+                return list.isEmpty() ? Collections.singletonList("NONE...") : list;
             }
         }
-        return Arrays.asList("NONE...");
+        return Collections.singletonList("NONE...");
     }
 }

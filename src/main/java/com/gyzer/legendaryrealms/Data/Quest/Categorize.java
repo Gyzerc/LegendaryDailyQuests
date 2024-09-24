@@ -5,13 +5,13 @@ import com.gyzer.legendaryrealms.Menu.MenuLoader;
 import java.util.List;
 
 public class Categorize {
-    private String id;
-    private String display;
-    private int cycle;
-    private int amount;
+    private final String id;
+    private final String display;
+    private final int cycle;
+    private final int amount;
     private List<String> quests;
-    private MenuLoader loader;
-    private List<String> rewards;
+    private final MenuLoader loader;
+    private final List<String> rewards;
     public Categorize(String id, String display, int cycle, int amount, List<String> quests,MenuLoader loader,List<String> rewards) {
         this.id = id;
         this.display = display;

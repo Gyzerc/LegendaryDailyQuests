@@ -14,10 +14,10 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 
 public class HarvestEvent implements Listener {
-    private HashMap<Player, Location> cache;
+    private final HashMap<Player, Location> cache;
 
     public HarvestEvent() {
-        cache = new HashMap<Player, Location>();
+        cache = new HashMap<>();
     }
 
     @EventHandler
@@ -29,6 +29,7 @@ public class HarvestEvent implements Listener {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @EventHandler
     public void onBlockDrop(BlockDropItemEvent e){
         if (e.getItems().isEmpty()){

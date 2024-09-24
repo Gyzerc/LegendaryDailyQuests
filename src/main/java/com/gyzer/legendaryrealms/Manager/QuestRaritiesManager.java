@@ -11,8 +11,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class QuestRaritiesManager {
-    private Map<String, QuestRarity> caches;
-    private LegendaryDailyQuests legendaryDailyQuests;
+    private final Map<String, QuestRarity> caches;
+    private final LegendaryDailyQuests legendaryDailyQuests;
     private LinkedList<QuestRarity> sorts;
 
     public QuestRaritiesManager(LegendaryDailyQuests legendaryDailyQuests) {

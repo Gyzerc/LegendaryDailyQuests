@@ -3,9 +3,7 @@ package com.gyzer.legendaryrealms.Manager;
 import com.gyzer.legendaryrealms.Data.Quest.Objective.ObjectiveType;
 import com.gyzer.legendaryrealms.LegendaryDailyQuests;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.ConfigurationSection;
 
-import java.util.HashMap;
 import java.util.logging.Level;
 
 public class ObjectivesManager {

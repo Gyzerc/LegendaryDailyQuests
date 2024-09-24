@@ -1,17 +1,14 @@
 package com.gyzer.legendaryrealms.Utils;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class ReplaceUtils {
-    private List<SingleHolder> singles;
-    private List<ListHolder> lists;
+    private final List<SingleHolder> singles;
+    private final List<ListHolder> lists;
 
 
     public ReplaceUtils(){
@@ -76,8 +73,8 @@ public class ReplaceUtils {
     }
 
     public class ListHolder {
-        private String target;
-        private List<String> value;
+        private final String target;
+        private final List<String> value;
 
         public ListHolder(String target, List<String> value) {
             this.target = target;
@@ -94,8 +91,8 @@ public class ReplaceUtils {
     }
     public class SingleHolder {
 
-        private String target;
-        private String value;
+        private final String target;
+        private final String value;
 
         public SingleHolder(String target, String value) {
             this.target = target;

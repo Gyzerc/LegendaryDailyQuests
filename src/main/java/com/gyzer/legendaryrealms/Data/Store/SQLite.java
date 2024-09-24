@@ -1,6 +1,5 @@
 package com.gyzer.legendaryrealms.Data.Store;
 
-import com.gyzer.legendaryrealms.Data.Quest.Progress.Progress;
 import com.gyzer.legendaryrealms.Data.Quest.Progress.ProgressData;
 import com.gyzer.legendaryrealms.Data.System.CompletedData;
 import com.gyzer.legendaryrealms.Data.User.PlayerData;
@@ -11,7 +10,6 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 import java.util.logging.Level;
-import java.util.stream.Collectors;
 
 public class SQLite extends DataProvider {
     final LegendaryDailyQuests legendaryDailyQuests = LegendaryDailyQuests.getLegendaryDailyQuests();

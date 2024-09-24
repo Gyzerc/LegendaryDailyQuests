@@ -7,7 +7,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 public class PlaceholderAPIHook {
-    private IntegrationsManager integrationsManager;
+    private final IntegrationsManager integrationsManager;
     private boolean enable = false;
     public PlaceholderAPIHook(IntegrationsManager integrationsManager) {
         this.integrationsManager = integrationsManager;

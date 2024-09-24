@@ -1,7 +1,5 @@
 package com.gyzer.legendaryrealms.Configurations;
 
-import com.gyzer.legendaryrealms.LegendaryDailyQuests;
-import com.gyzer.legendaryrealms.Utils.ItemUtils;
 import org.bukkit.Sound;
 
 import java.util.Optional;

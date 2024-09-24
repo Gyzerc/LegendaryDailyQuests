@@ -7,10 +7,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
-import org.bukkit.configuration.file.YamlConfiguration;
+import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 public class DailyQuestsCommands implements CommandExecutor, TabExecutor {
@@ -29,10 +27,10 @@ public class DailyQuestsCommands implements CommandExecutor, TabExecutor {
         commands.put("complete", new CompleteCommnd());
         commands.put("reset",new ResetCommand());
     }
-    private List<String> list = new ArrayList<>();
+    private final List<String> list = new ArrayList<>();
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String s, String[] strings)
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, String[] strings)
     {
         int length = strings.length;
 
@@ -71,7 +69,7 @@ public class DailyQuestsCommands implements CommandExecutor, TabExecutor {
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
+    public List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, String[] strings) {
         int length = strings.length;
         List<String> tab=new ArrayList<>();
         if (length == 1 ){

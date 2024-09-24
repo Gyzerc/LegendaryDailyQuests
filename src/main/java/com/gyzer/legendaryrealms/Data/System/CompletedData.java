@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class CompletedData {
-    private HashMap<String, LinkedList<UUID>> completed;
+    private final HashMap<String, LinkedList<UUID>> completed;
 
     public CompletedData(HashMap<String, LinkedList<UUID>> completed) {
         this.completed = completed;
@@ -36,9 +36,7 @@ public class CompletedData {
     }
 
     public void clear(String categorize) {
-        if (completed.containsKey(categorize)) {
-            completed.remove(categorize);
-        }
+        completed.remove(categorize);
     }
     public void update() {
         LegendaryDailyQuests.getLegendaryDailyQuests().getSystemDataManager().update(this);

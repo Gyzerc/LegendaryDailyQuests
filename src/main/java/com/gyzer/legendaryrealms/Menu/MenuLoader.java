@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class MenuLoader {
     final LegendaryDailyQuests legendaryDailyQuests = LegendaryDailyQuests.getLegendaryDailyQuests();
-    private YamlConfiguration yml;
+    private final YamlConfiguration yml;
     private String title;
     private Optional<Sound> sound;
     private int size;

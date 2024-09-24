@@ -9,16 +9,10 @@ import com.gyzer.legendaryrealms.Data.User.PlayerData;
 import com.gyzer.legendaryrealms.LegendaryDailyQuests;
 import com.gyzer.legendaryrealms.Menu.MenuPanel;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.block.Block;
-import org.bukkit.block.data.Ageable;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockDropItemEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.inventory.FurnaceExtractEvent;
@@ -26,14 +20,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.*;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.metadata.MetadataValue;
-import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataType;
 
 import java.util.Map;
-import java.util.logging.Level;
 
 public class PlayerEvents implements Listener {
     final LegendaryDailyQuests legendaryDailyQuests = LegendaryDailyQuests.getLegendaryDailyQuests();
@@ -177,6 +165,8 @@ public class PlayerEvents implements Listener {
             new EntityGoalChecker(e.getEntity()).check(p,ObjectiveType.SHEAR,1);
         }
     }
+
+    @SuppressWarnings("deprecation")
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent e) {
         if (!e.isCancelled()) {
@@ -243,6 +233,7 @@ public class PlayerEvents implements Listener {
 
     }
 
+    @SuppressWarnings("deprecation")
     @EventHandler
     public void onChat(PlayerChatEvent e)
     {

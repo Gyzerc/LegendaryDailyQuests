@@ -1,12 +1,12 @@
 package com.gyzer.legendaryrealms.Data.Quest;
 
 public class QuestRarity {
-    private String id;
-    private String display;
-    private int weight;
-    private int chance;
-    private boolean broad;
-    private int max;
+    private final String id;
+    private final String display;
+    private final int weight;
+    private final int chance;
+    private final boolean broad;
+    private final int max;
 
     public QuestRarity(String id, String display, int weight, int chance, boolean broad, int max) {
         this.id = id;

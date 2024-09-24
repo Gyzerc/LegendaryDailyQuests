@@ -11,8 +11,8 @@ import java.util.logging.Level;
 
 public abstract class ConfigurationProvider {
     public final LegendaryDailyQuests legendaryDailyQuests = LegendaryDailyQuests.getLegendaryDailyQuests();
-    private File file;
-    private YamlConfiguration yml;
+    private final File file;
+    private final YamlConfiguration yml;
     public ConfigurationProvider(String path,String internalPath,String fileName){
         this.file = new File(path,fileName);
         if (!file.exists()){

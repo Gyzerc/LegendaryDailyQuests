@@ -15,12 +15,12 @@ public class PlayerQuestProgressAddEvent extends Event {
     public static HandlerList getHandlerList() {
         return HANDLERS;
     }
-    private Player p;
-    private String cat;
-    private String questId;
-    private String goal;
-    private double before;
-    private double now;
+    private final Player p;
+    private final String cat;
+    private final String questId;
+    private final String goal;
+    private final double before;
+    private final double now;
 
     public PlayerQuestProgressAddEvent(Player p, String cat, String questId, String goal, double before, double now) {
         this.p = p;

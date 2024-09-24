@@ -3,7 +3,7 @@ package com.gyzer.legendaryrealms.Listeners.Other;
 import com.gyzer.legendaryrealms.Data.Quest.Checker.StringGoalChecker;
 import com.gyzer.legendaryrealms.Data.Quest.Objective.ObjectiveType;
 import com.gyzer.legendaryrealms.LegendaryDailyQuests;
-import org.bukkit.Bukkit;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -16,12 +16,11 @@ import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class BrewQuestEvent implements Listener {
-    private HashMap<Location, String[]> stackCache=new HashMap<>();
-    private HashMap<Location, Player> ownerCache=new HashMap<>();
+    private final HashMap<Location, String[]> stackCache=new HashMap<>();
+    private final HashMap<Location, Player> ownerCache=new HashMap<>();
 
     @EventHandler
     public void onBrewing(BrewEvent e){

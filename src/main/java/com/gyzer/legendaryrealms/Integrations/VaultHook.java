@@ -9,7 +9,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class VaultHook {
     private Economy economy;
-    private IntegrationsManager integrationsManager;
+    private final IntegrationsManager integrationsManager;
     public VaultHook(IntegrationsManager integrationsManager) {
         this.integrationsManager = integrationsManager;
         if (Bukkit.getPluginManager().isPluginEnabled("Vault")) {

@@ -3,19 +3,15 @@ package com.gyzer.legendaryrealms.Commands.SubCommands;
 import com.gyzer.legendaryrealms.Commands.CommandTabBuilder;
 import com.gyzer.legendaryrealms.Data.Quest.Categorize;
 import com.gyzer.legendaryrealms.Data.Quest.Checker.GoalNoCheck;
-import com.gyzer.legendaryrealms.Data.Quest.GoalChecker;
 import com.gyzer.legendaryrealms.Data.Quest.Objective.ObjectiveType;
-import com.gyzer.legendaryrealms.Data.Quest.Progress.Progress;
-import com.gyzer.legendaryrealms.Data.Quest.Progress.ProgressData;
+import com.gyzer.legendaryrealms.Data.Quest.Objective.QuestObjective;
 import com.gyzer.legendaryrealms.Data.Quest.Quest;
 import com.gyzer.legendaryrealms.Data.User.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,7 +63,7 @@ public class TriggerCommand extends com.gyzer.legendaryrealms.Commands.Legendary
         if (quest == null) {
             return Arrays.asList("This quest doesn't have goals.");
         }
-        return quest.getObjectives().stream().map(o -> o.getId()).collect(Collectors.toList());
+        return quest.getObjectives().stream().map(QuestObjective::getId).collect(Collectors.toList());
     }
 
 

@@ -1,6 +1,5 @@
 package com.gyzer.legendaryrealms.Commands.SubCommands;
 
-import com.gyzer.legendaryrealms.API.LegendaryDailyQuestsAPI;
 import com.gyzer.legendaryrealms.Commands.CommandTabBuilder;
 import com.gyzer.legendaryrealms.Data.Quest.Categorize;
 import com.gyzer.legendaryrealms.Data.Quest.Progress.ProgressData;
@@ -52,7 +51,7 @@ public class ResetCommand extends com.gyzer.legendaryrealms.Commands.LegendaryCo
     public List<String> complete(CommandSender sender, String[] args) {
         return new CommandTabBuilder()
                 .addTab(getOnlines(),1, Arrays.asList("reset"),0)
-                .addTab((legendaryDailyQuests.getCategorizesManager().getCategorizes().stream().map(e -> e.getId()).collect(Collectors.toList())) , 2 , Arrays.asList("reset") , 0)
+                .addTab((legendaryDailyQuests.getCategorizesManager().getCategorizes().stream().map(Categorize::getId).collect(Collectors.toList())) , 2 , Arrays.asList("reset") , 0)
                 .addTab((args.length > 2 ? getTargetAccepts(args[1],args[2],null) : Arrays.asList("Not have accepted quests.")) , 3 , Arrays.asList("reset") , 0)
                 .build(args);
     }

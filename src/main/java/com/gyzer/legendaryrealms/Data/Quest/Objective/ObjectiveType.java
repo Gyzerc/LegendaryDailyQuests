@@ -9,8 +9,8 @@ public enum ObjectiveType {
     ENCHANT(true),ITEM_BROKEN(true),CHAT(true),TAME(true),DELAY(true),BREW(true),TRIGGER(true)
 
     ,AURELIUMSKILLS_EXP(false,"AureliumSkills"),MCMMO_EXP(false,"mcMMO"),PLACEHOLDERAPI(false,"PlaceholderAPI");
-    private boolean useInt;
-    private String plugin;
+    private final boolean useInt;
+    private final String plugin;
 
     ObjectiveType(boolean useInt) {
         this.useInt = useInt;

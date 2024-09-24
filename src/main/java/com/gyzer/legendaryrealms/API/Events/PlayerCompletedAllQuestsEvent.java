@@ -15,8 +15,8 @@ public class PlayerCompletedAllQuestsEvent extends Event {
     public static HandlerList getHandlerList() {
         return HANDLERS;
     }
-    private Player p;
-    private String categorize;
+    private final Player p;
+    private final String categorize;
 
     public PlayerCompletedAllQuestsEvent(Player p,String categorize) {
         this.p = p;

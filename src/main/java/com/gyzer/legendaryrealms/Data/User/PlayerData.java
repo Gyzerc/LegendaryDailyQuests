@@ -1,16 +1,13 @@
 package com.gyzer.legendaryrealms.Data.User;
 
 import com.gyzer.legendaryrealms.API.LegendaryDailyQuestsAPI;
-import com.gyzer.legendaryrealms.Data.Quest.Progress.Progress;
 import com.gyzer.legendaryrealms.Data.Quest.Progress.ProgressData;
 import com.gyzer.legendaryrealms.LegendaryDailyQuests;
-import com.gyzer.legendaryrealms.Utils.StringUtils;
-import org.bukkit.Bukkit;
 
 import java.util.*;
 
 public class PlayerData {
-    private UUID uuid;
+    private final UUID uuid;
     private HashMap<String ,LinkedList<String>> quests;
     private HashMap<String ,List<String>> accepts;
     private HashMap<String ,List<String>> completeds;

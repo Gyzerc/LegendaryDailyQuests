@@ -1,7 +1,7 @@
 package com.gyzer.legendaryrealms.Data.Quest.Progress;
 
 public class Progress {
-    private String name;
+    private final String name;
     private double progress;
 
     public Progress(String name, double progress) {

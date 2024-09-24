@@ -7,7 +7,6 @@ import com.gyzer.legendaryrealms.API.Events.NewDayEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;

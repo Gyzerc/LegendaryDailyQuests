@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class ItemCheck {
-    private String value;
+    private final String value;
     private ItemType type = ItemType.Default;
     final IntegrationsManager integrationsManager = LegendaryDailyQuests.getLegendaryDailyQuests().getIntegrationsManager();
     String[] values ;
@@ -27,7 +27,6 @@ public class ItemCheck {
                    type = ItemType.Custom;
                    break;
            }
-           return;
        }
     }
     public boolean Compare(ItemStack input) {
@@ -85,6 +84,6 @@ public class ItemCheck {
 
     public enum ItemType {
         Default,
-        Custom;
+        Custom
     }
 }

@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class ItemGoalChecker extends GoalChecker {
-    private ItemStack input;
+    private final ItemStack input;
 
     public ItemGoalChecker(ItemStack input) {
         this.input = input;

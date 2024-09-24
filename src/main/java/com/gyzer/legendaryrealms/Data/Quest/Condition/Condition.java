@@ -3,9 +3,6 @@ package com.gyzer.legendaryrealms.Data.Quest.Condition;
 import org.bukkit.entity.Player;
 
 import java.util.function.Consumer;
-import java.util.function.Predicate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Condition {
     public static String getSymbol(String arg) {
@@ -32,9 +29,9 @@ public class Condition {
         }
         return "";
     }
-    private String symbol;
+    private final String symbol;
     private String value;
-    private Consumer<ConditionCompare> playerConsumer;
+    private final Consumer<ConditionCompare> playerConsumer;
 
     public Condition(String symbol, Consumer<ConditionCompare> playerConsumer) {
         this.symbol = symbol;
@@ -66,9 +63,9 @@ public class Condition {
         return condition;
     }
     public class ConditionCompare {
-        private Player p;
+        private final Player p;
         private boolean aBoolean;
-        private String str;
+        private final String str;
 
         public ConditionCompare(Player p, String str, boolean aBoolean) {
             this.p = p;
