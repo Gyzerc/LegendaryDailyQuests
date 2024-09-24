@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MenuItem {
-    private String id;
+    private final String id;
     private ItemStack item;
     private String fuction;
     private boolean useHead;

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class CategorizesManager {
     final LegendaryDailyQuests legendaryDailyQuests = LegendaryDailyQuests.getLegendaryDailyQuests();
-    private HashMap<String, Categorize> caches;
+    private final HashMap<String, Categorize> caches;
 
     public CategorizesManager( ) {
         this.caches = new HashMap<>();

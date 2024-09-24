@@ -3,7 +3,6 @@ package com.gyzer.legendaryrealms.Data.User;
 import com.gyzer.legendaryrealms.Utils.StringUtils;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class LoginData {
     private int date;

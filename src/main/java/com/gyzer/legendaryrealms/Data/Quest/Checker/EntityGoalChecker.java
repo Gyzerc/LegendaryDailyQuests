@@ -6,7 +6,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 public class EntityGoalChecker extends GoalChecker {
-    private Entity entity;
+    private final Entity entity;
 
     public EntityGoalChecker(Entity entity) {
         this.entity = entity;

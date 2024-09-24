@@ -27,10 +27,10 @@ import java.util.stream.Collectors;
 
 public class MenuPanel implements InventoryHolder {
     private Inventory inv;
-    private Player p;
-    private Categorize categorize;
-    private MenuLoader loader;
-    private HashMap<Integer,String> stringStore;
+    private final Player p;
+    private final Categorize categorize;
+    private final MenuLoader loader;
+    private final HashMap<Integer,String> stringStore;
     private int questAmount;
     final LegendaryDailyQuests legendaryDailyQuests = LegendaryDailyQuests.getLegendaryDailyQuests();
     final Language lang = legendaryDailyQuests.getConfigurationsManager().getLanguage();
@@ -199,7 +199,7 @@ public class MenuPanel implements InventoryHolder {
                             p.sendMessage(lang.PLUGIN + lang.refresh_notenough);
                             return;
                         }
-                        if ( (!legendaryDailyQuests.getConfigurationsManager().getConfig().can_refresh_accepted && data.getAccepts(categorize.getId()).isEmpty()) || legendaryDailyQuests.getConfigurationsManager().getConfig().can_refresh_accepted ) {
+                        if (legendaryDailyQuests.getConfigurationsManager().getConfig().can_refresh_accepted || data.getAccepts(categorize.getId()).isEmpty()) {
                             p.sendMessage(lang.PLUGIN + lang.refresh);
                             data.takeRefresh(categorize.getId(), 1);
                             LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(), categorize, new ArrayList<>());
@@ -245,7 +245,6 @@ public class MenuPanel implements InventoryHolder {
                             return;
                         }
                         p.sendMessage(lang.PLUGIN + lang.finalyReward_already.replace("%categorize%", categorize.getDisplay()));
-                        return;
                     }
                 }
             }

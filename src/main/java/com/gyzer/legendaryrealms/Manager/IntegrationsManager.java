@@ -9,8 +9,8 @@ import org.bukkit.Bukkit;
 import java.util.logging.Level;
 
 public class IntegrationsManager {
-    private VaultHook vaultHook;
-    private PlaceholderAPIHook placeholderAPIHook;
+    private final VaultHook vaultHook;
+    private final PlaceholderAPIHook placeholderAPIHook;
     public IntegrationsManager() {
         placeholderAPIHook = new PlaceholderAPIHook(this);
         vaultHook = new VaultHook(this);
@@ -18,11 +18,16 @@ public class IntegrationsManager {
             Bukkit.getPluginManager().registerEvents(new AureliumSkillsEvent(),LegendaryDailyQuests.getLegendaryDailyQuests());
             msg("AureliumSkills");
         }
+        if (Bukkit.getPluginManager().isPluginEnabled("AuraSkills")) {
+            Bukkit.getPluginManager().registerEvents(new AuraSkillsEvent(),LegendaryDailyQuests.getLegendaryDailyQuests());
+            msg("AuraSkills");
+        }
         if (Bukkit.getPluginManager().isPluginEnabled("mcMMO")) {
             Bukkit.getPluginManager().registerEvents(new mcMMOEvent(),LegendaryDailyQuests.getLegendaryDailyQuests());
             msg("mcMMO");
         }
     }
+
     public VaultHook getVaultHook() {
         return vaultHook;
     }

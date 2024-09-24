@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class QuestsManager {
     private final LegendaryDailyQuests legendaryDailyQuests = LegendaryDailyQuests.getLegendaryDailyQuests();
     private final Language language = legendaryDailyQuests.getConfigurationsManager().getLanguage();
-    private HashMap<String, Quest> caches;
+    private final HashMap<String, Quest> caches;
     public QuestsManager(){
         caches = new HashMap<>();
         legendaryDailyQuests.sync(()->loadAllQuests());
@@ -84,7 +84,7 @@ public class QuestsManager {
                     continue;
                 }
                 caches.put(id,new Quest(id,display,preview_material,preview_model,preview_amount,preview_lore,preview_rewards,objectives,rewards,rarity,completeGoal));
-                legendaryDailyQuests.sendConsoleMessage(language.PLUGIN+" &aSuccessfully load quest &f"+id+"");
+                legendaryDailyQuests.sendConsoleMessage(language.PLUGIN+" &aSuccessfully load quest &f"+id);
                 a++;
              }
         }

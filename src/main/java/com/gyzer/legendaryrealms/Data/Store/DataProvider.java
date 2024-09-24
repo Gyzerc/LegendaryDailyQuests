@@ -314,8 +314,8 @@ public abstract class DataProvider {
                         .build("id"));
 
 
-        private String name;
-        private Builder builder;
+        private final String name;
+        private final Builder builder;
         DatabaseTable(String name,Builder builder){
             this.name = name;
             this.builder = builder;
@@ -330,10 +330,10 @@ public abstract class DataProvider {
     }
 
     public static class Builder {
-        private String tableName;
+        private final String tableName;
         private String mainKey;
-        private StringBuilder stringBuilder;
-        private List<Column> keys;
+        private final StringBuilder stringBuilder;
+        private final List<Column> keys;
 
         public Builder(String tableName) {
             this.keys = new ArrayList<>();
@@ -345,7 +345,7 @@ public abstract class DataProvider {
             if (!stringBuilder.toString().endsWith(",") && !stringBuilder.toString().endsWith("(")){
                 stringBuilder.append(",");
             }
-            stringBuilder.append("").append(keyName).append(" TEXT DEFAULT NULL");
+            stringBuilder.append(keyName).append(" TEXT DEFAULT NULL");
             keys.add(new Column(keyName,"TEXT DEFAULT NULL"));
             return this;
         }
@@ -354,7 +354,7 @@ public abstract class DataProvider {
             if (!stringBuilder.toString().endsWith(",") && !stringBuilder.toString().endsWith("(")){
                 stringBuilder.append(",");
             }
-            stringBuilder.append("").append(keyName).append(" UUID DEFAULT NULL");
+            stringBuilder.append(keyName).append(" UUID DEFAULT NULL");
             keys.add(new Column(keyName,"UUID DEFAULT NULL"));
             return this;
         }
@@ -363,7 +363,7 @@ public abstract class DataProvider {
             if (!stringBuilder.toString().endsWith(",") && !stringBuilder.toString().endsWith("(")){
                 stringBuilder.append(",");
             }
-            stringBuilder.append("").append(keyName).append(" BLOB DEFAULT NULL");
+            stringBuilder.append(keyName).append(" BLOB DEFAULT NULL");
             keys.add(new Column(keyName,"BLOB DEFAULT NULL"));
             return this;
         }
@@ -457,8 +457,8 @@ public abstract class DataProvider {
 
 
         public class Column {
-            private String column;
-            private String type;
+            private final String column;
+            private final String type;
 
             public Column(String column, String type) {
                 this.column = column;

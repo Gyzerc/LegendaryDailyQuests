@@ -2,23 +2,22 @@ package com.gyzer.legendaryrealms.Data.Quest;
 
 import com.gyzer.legendaryrealms.Data.Quest.Objective.QuestObjective;
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class Quest {
-    private String id;
-    private String display;
-    private Material preview_material;
-    private int preview_model;
-    private int preview_amount;
-    private List<String> preview_lore;
-    private List<String> preview_reward;
-    private LinkedList<QuestObjective> objectives;
-    private List<String> rewards;
-    private QuestRarity rarity;
-    private int completeGoals;
+    private final String id;
+    private final String display;
+    private final Material preview_material;
+    private final int preview_model;
+    private final int preview_amount;
+    private final List<String> preview_lore;
+    private final List<String> preview_reward;
+    private final LinkedList<QuestObjective> objectives;
+    private final List<String> rewards;
+    private final QuestRarity rarity;
+    private final int completeGoals;
     public Quest(String id, String display,Material preview_material, int preview_model, int preview_amount, List<String> preview_lore, List<String> preview_reward, LinkedList<QuestObjective> objectives, List<String> rewards,QuestRarity rarity,int completeGoals) {
         this.id = id;
         this.display = display;

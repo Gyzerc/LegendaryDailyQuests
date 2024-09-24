@@ -5,12 +5,12 @@ import com.gyzer.legendaryrealms.Data.Quest.Condition.Condition;
 import java.util.List;
 
 public class QuestObjective {
-        private String id;
-        private ObjectiveType type;
-        private String value;
-        private double amount;
-        private Condition[] conditions;
-        private List<String> run;
+        private final String id;
+        private final ObjectiveType type;
+        private final String value;
+        private final double amount;
+        private final Condition[] conditions;
+        private final List<String> run;
 
         public QuestObjective(String id,ObjectiveType type, String value, double amount,List<String> run,Condition[] conditions) {
             this.id = id;

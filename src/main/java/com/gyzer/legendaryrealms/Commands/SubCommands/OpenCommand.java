@@ -1,7 +1,6 @@
 package com.gyzer.legendaryrealms.Commands.SubCommands;
 
 import com.gyzer.legendaryrealms.Commands.CommandTabBuilder;
-import com.gyzer.legendaryrealms.Configurations.Language;
 import com.gyzer.legendaryrealms.Data.Quest.Categorize;
 import com.gyzer.legendaryrealms.Menu.MenuPanel;
 import org.bukkit.Bukkit;

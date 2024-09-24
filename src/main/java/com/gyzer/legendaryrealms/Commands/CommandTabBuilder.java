@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Consumer;
 
 public class CommandTabBuilder {
 
-    private Set<TabList> list;
+    private final Set<TabList> list;
     public CommandTabBuilder(){
         list = new HashSet<>();
     }
@@ -44,14 +43,14 @@ public class CommandTabBuilder {
 
     public class TabList {
 
-        private List<String> returnList;
+        private final List<String> returnList;
         //此参数出现的位置
-        private int position;
+        private final int position;
 
         //识别上一个参数
-        private List<String> previousArg;
+        private final List<String> previousArg;
         //上一个参数出现的位置
-        private int previousPosition;
+        private final int previousPosition;
 
 
         public TabList(List<String> returnList, int position, List<String> previousArg, int previousPosition) {

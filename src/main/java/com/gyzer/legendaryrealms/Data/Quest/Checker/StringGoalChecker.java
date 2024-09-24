@@ -32,7 +32,7 @@ public class StringGoalChecker extends GoalChecker {
             }
         }
     } */
-    private String input;
+    private final String input;
 
     public StringGoalChecker(String input) {
         this.input = input;

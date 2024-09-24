@@ -11,7 +11,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.sql.*;
 import java.util.*;
 import java.util.logging.Level;
-import java.util.stream.Collectors;
 
 public class MySQL extends DataProvider{
     private final LegendaryDailyQuests legendaryDailyQuests = LegendaryDailyQuests.getLegendaryDailyQuests();

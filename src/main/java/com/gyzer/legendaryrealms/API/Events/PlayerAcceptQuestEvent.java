@@ -15,9 +15,9 @@ public class PlayerAcceptQuestEvent extends Event {
     public static HandlerList getHandlerList() {
         return HANDLERS;
     }
-    private Player p;
-    private String cat;
-    private String questId;
+    private final Player p;
+    private final String cat;
+    private final String questId;
 
     public PlayerAcceptQuestEvent(Player p, String cat, String questId) {
         this.p = p;
