@@ -8,7 +8,7 @@ public enum ObjectiveType {
     PROJECTILE_DAMAGE(false),DAMAGED(false),BLOCKING(false),BLOCKING_PROJECTILE(false),CONSUME(true),
     ENCHANT(true),ITEM_BROKEN(true),CHAT(true),TAME(true),DELAY(true),BREW(true),TRIGGER(true)
 
-    ,AURELIUMSKILLS_EXP(false,"AureliumSkills"),MCMMO_EXP(false,"mcMMO"),PLACEHOLDERAPI(false,"PlaceholderAPI");
+    ,AURASKILLS_EXP(false,"AuraSkills"),AURELIUMSKILLS_EXP(false, "AureliumSkills"),MCMMO_EXP(false,"mcMMO"),PLACEHOLDERAPI(false,"PlaceholderAPI");
     private final boolean useInt;
     private final String plugin;
 

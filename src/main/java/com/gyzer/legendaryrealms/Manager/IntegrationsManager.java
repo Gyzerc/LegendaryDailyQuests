@@ -18,6 +18,10 @@ public class IntegrationsManager {
             Bukkit.getPluginManager().registerEvents(new AureliumSkillsEvent(),LegendaryDailyQuests.getLegendaryDailyQuests());
             msg("AureliumSkills");
         }
+        if (Bukkit.getPluginManager().isPluginEnabled("AuraSkills")) {
+            Bukkit.getPluginManager().registerEvents(new AuraSkillsEvent(),LegendaryDailyQuests.getLegendaryDailyQuests());
+            msg("AuraSkills");
+        }
         if (Bukkit.getPluginManager().isPluginEnabled("mcMMO")) {
             Bukkit.getPluginManager().registerEvents(new mcMMOEvent(),LegendaryDailyQuests.getLegendaryDailyQuests());
             msg("mcMMO");

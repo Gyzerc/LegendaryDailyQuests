@@ -6,7 +6,7 @@
 
     <groupId>com.gyzer.legendaryrealms</groupId>
     <artifactId>LegendaryDailyQuests</artifactId>
-    <version>1.1.2</version>
+    <version>1.1.3</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -54,6 +54,12 @@
             <version>3.0.2</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>24.1.0</version>
+            <scope>provided</scope>
+        </dependency>
 
 <!--        placeholderapi-->
         <dependency>
@@ -65,6 +71,13 @@
         </dependency>
 
         <!--本地-->
+        <dependency>
+            <groupId>dev.aurelium</groupId>
+            <artifactId>auraskills-api-bukkit</artifactId>
+            <version>2.2.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/lib/AuraSkills-2.2.3.jar</systemPath>
+        </dependency>
         <dependency>
             <groupId>com.archyx</groupId>
             <artifactId>AureliumSkills</artifactId>
