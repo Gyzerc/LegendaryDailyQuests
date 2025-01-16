@@ -31,7 +31,7 @@ public class RandomCommand extends com.gyzer.legendaryrealms.Commands.LegendaryC
         if (categorize != null){
             Player p = Bukkit.getPlayerExact(args[2]);
             if (p != null){
-                LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(),categorize,checkOrRandomQuests(vars));
+                LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(),categorize,checkOrRandomQuests(vars),true);
                 sender.sendMessage(lang.PLUGIN+lang.random_target.replace("%player%",args[2]).replace("%categorize%",categorize.getDisplay()));
                 return;
             }

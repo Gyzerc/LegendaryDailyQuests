@@ -31,7 +31,7 @@ public class LegendaryDailyQuestsAPI {
     public static PlayerData getPlayerData(UUID uuid){
         return LegendaryDailyQuests.getLegendaryDailyQuests().getPlayerDataManager().getPlayerData(uuid);
     }
-    public static void randomPlayerQuests(UUID uuid, Categorize categorize , List<String> specials){
+    public static void randomPlayerQuests(UUID uuid, Categorize categorize , List<String> specials,boolean reset){
         PlayerData data = getPlayerData(uuid);
         String id = categorize.getId();
         data.getQuests().remove(id);
@@ -72,6 +72,10 @@ public class LegendaryDailyQuestsAPI {
                 }
             }
             round++;
+        }
+        int roll = categorize.getRefreshPoints(Bukkit.getPlayer(uuid));
+        if (reset && roll >= 0) {
+            data.getRefresh().put(id, categorize.getRefreshPoints(Bukkit.getPlayer(uuid)));
         }
         data.getQuests().put(id,select);
         data.update(false);

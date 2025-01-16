@@ -1,5 +1,7 @@
 package com.gyzer.legendaryrealms;
 
+import com.github.Anon8281.universalScheduler.UniversalScheduler;
+import com.github.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
 import com.gyzer.legendaryrealms.API.DailyQuestPlaceholder;
 import com.gyzer.legendaryrealms.Commands.DailyQuestsCommands;
 import com.gyzer.legendaryrealms.Data.Quest.Checker.DoubleGoalChecker;
@@ -26,10 +28,12 @@ public class LegendaryDailyQuests extends JavaPlugin {
     public String plugin;
     public boolean version_high;
     private DailyQuestPlaceholder dailyQuestPlaceholder;
+    private TaskScheduler scheduler;
     @Override
     public void onEnable() {
 
         legendaryDailyQuests = this;
+        scheduler = UniversalScheduler.getScheduler(this);
         //获取是否高版本
         version_high = BukkitVersionHigh();
         objectivesManager = new ObjectivesManager();
@@ -50,7 +54,7 @@ public class LegendaryDailyQuests extends JavaPlugin {
                 int today = calendar.get(Calendar.DATE);
                 int record = dataProvider.getDate("last");
                 if (today != record) {
-                    Bukkit.getScheduler().runTask(this, () -> Bukkit.getPluginManager().callEvent(new NewDayEvent(today)));
+                    scheduler.runTask(this, () -> Bukkit.getPluginManager().callEvent(new NewDayEvent(today)));
                 }
             }, 0, 20 * 60);
         }
@@ -67,7 +71,7 @@ public class LegendaryDailyQuests extends JavaPlugin {
             dailyQuestPlaceholder.register();
         }
 
-        Bukkit.getScheduler().runTaskLater(this,()->new Metrics(this,22212),20);
+        scheduler.runTaskLater(this,()->new Metrics(this,22212),20);
     }
 
     private boolean BukkitVersionHigh() {
@@ -140,6 +144,10 @@ public class LegendaryDailyQuests extends JavaPlugin {
     private SystemDataManager systemDataManager;
     private QuestRaritiesManager questRaritiesManager;
 
+    public TaskScheduler getScheduler() {
+        return scheduler;
+    }
+
     public QuestRaritiesManager getQuestRaritiesManager() {
         return questRaritiesManager;
     }
@@ -191,13 +199,13 @@ public class LegendaryDailyQuests extends JavaPlugin {
         getLogger().log(level,msg);
     }
     public void sync(Runnable consumer){
-        Bukkit.getScheduler().runTaskAsynchronously(this,consumer);
+        scheduler.runTaskAsynchronously(this,consumer);
     }
     public void sync(Runnable runnable,int delay){
-        Bukkit.getScheduler().runTaskLaterAsynchronously(this,runnable,delay);
+        scheduler.runTaskLaterAsynchronously(this,runnable,delay);
     }
     public void sync(Runnable runnable,int delay,int timer){
-        Bukkit.getScheduler().runTaskTimerAsynchronously(this,runnable,delay,timer);
+        scheduler.runTaskTimerAsynchronously(this,runnable,delay,timer);
     }
     public void sendConsoleMessage(String str){
         Bukkit.getConsoleSender().sendMessage(MsgUtils.msg(str));

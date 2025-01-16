@@ -88,9 +88,7 @@ public class PlayerEvents implements Listener {
             if (e.getEntity().getCustomName() != null) {
                 new StringGoalChecker(e.getEntity().getCustomName()).check(p,ObjectiveType.KILL_CUSTOM,1);
             }
-            else {
-                new EntityGoalChecker(e.getEntity()).check(p, ObjectiveType.KILL_ENTITY,1);
-            }
+            new EntityGoalChecker(e.getEntity()).check(p, ObjectiveType.KILL_ENTITY,1);
         }
     }
 

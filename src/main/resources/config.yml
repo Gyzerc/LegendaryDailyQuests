@@ -38,6 +38,7 @@ can-refresh-accepted: false
 refresh-round-max: 20
 #该子服是否进行日期检测以及数据刷新工作
 #如果你是群组服的并且多个子服在共用同一个数据库时，该选项请保持只有一个子服是打开的，防止数据异常刷新
+
 refresh-enable: true
 sounds:
   #The sound effect played when accepting a task

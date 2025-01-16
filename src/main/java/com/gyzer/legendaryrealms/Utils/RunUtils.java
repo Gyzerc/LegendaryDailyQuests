@@ -8,7 +8,7 @@ import java.util.List;
 
 public class RunUtils {
     public static void run(Player p, List<String> list){
-        Bukkit.getScheduler().runTask(LegendaryDailyQuests.getLegendaryDailyQuests(),()->{
+        LegendaryDailyQuests.getLegendaryDailyQuests().getScheduler().runTask(LegendaryDailyQuests.getLegendaryDailyQuests(),()->{
             list.forEach(s -> {
                 String[] args = MsgUtils.msg(s).replace("%player%",p.getName()).split(";");
                 if (args.length > 1){

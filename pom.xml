@@ -6,7 +6,7 @@
 
     <groupId>com.gyzer.legendaryrealms</groupId>
     <artifactId>LegendaryDailyQuests</artifactId>
-    <version>1.1.2</version>
+    <version>1.1.4</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -30,6 +30,12 @@
         </repository>
     </repositories>
     <dependencies>
+        <dependency>
+            <groupId>com.github.Anon8281</groupId>
+            <artifactId>UniversalScheduler</artifactId>
+            <version>0.1.6</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>

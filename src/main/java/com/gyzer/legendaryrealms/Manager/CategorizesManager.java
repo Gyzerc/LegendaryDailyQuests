@@ -38,9 +38,11 @@ public class CategorizesManager {
                     String display = MsgUtils.msg(yml.getString("settings.display","Quests"));
                     int refresh = yml.getInt("settings.refresh",1);
                     int amount = yml.getInt("settings.amount",5);
+                    int default_refresh_points = yml.getInt("settings.default-refresh-points",-1);
+
                     List<String> quests = yml.getStringList("settings.quests");
                     List<String> rewards = yml.getStringList("settings.rewards");
-                    caches.put(cat,new Categorize(cat,display,refresh,amount,quests,loader,rewards));
+                    caches.put(cat,new Categorize(cat,display,refresh,amount,quests,loader,rewards,default_refresh_points));
                     legendaryDailyQuests.sendConsoleMessage(legendaryDailyQuests.plugin+" &fSuccessfully loaded categorize &6"+cat);
                 }
             }

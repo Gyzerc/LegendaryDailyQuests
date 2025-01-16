@@ -55,7 +55,7 @@ public class MenuPanel implements InventoryHolder {
                     cycles.put(categorize.getId(),server);
                     data.setCycles(cycles);
                     data.update(false);
-                    LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(),categorize,new ArrayList<>());
+                    LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(),categorize,new ArrayList<>(),true);
                 }
             } else {
                 HashMap<String,UUID> cycles = data.getCycles();
@@ -63,13 +63,13 @@ public class MenuPanel implements InventoryHolder {
                 data.setCycles(cycles);
                 data.update(false);
 
-                LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(),categorize,new ArrayList<>());
+                LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(),categorize,new ArrayList<>(),true);
             }
 
             //检测是否本轮的任务还未刷新
             if (!data.getQuests().containsKey(categorize.getId())) {
                 if (categorize.getQuests().size() > 0){
-                    LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(),categorize,new ArrayList<>());
+                    LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(),categorize,new ArrayList<>(),true);
                 }
             }
             loadMenu(LegendaryDailyQuestsAPI.getPlayerData(p));
@@ -202,9 +202,9 @@ public class MenuPanel implements InventoryHolder {
                         if ( (!legendaryDailyQuests.getConfigurationsManager().getConfig().can_refresh_accepted && data.getAccepts(categorize.getId()).isEmpty()) || legendaryDailyQuests.getConfigurationsManager().getConfig().can_refresh_accepted ) {
                             p.sendMessage(lang.PLUGIN + lang.refresh);
                             data.takeRefresh(categorize.getId(), 1);
-                            LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(), categorize, new ArrayList<>());
+                            LegendaryDailyQuestsAPI.randomPlayerQuests(p.getUniqueId(), categorize, new ArrayList<>(),false);
                             MenuPanel panel = new MenuPanel(p, categorize);
-                            Bukkit.getScheduler().runTask(legendaryDailyQuests, panel::open);
+                            LegendaryDailyQuests.getLegendaryDailyQuests().getScheduler().runTask(legendaryDailyQuests, panel::open);
                             return;
                         }
                         p.sendMessage(lang.PLUGIN + lang.refresh_accepted);
@@ -219,13 +219,13 @@ public class MenuPanel implements InventoryHolder {
                                     if (hasGiveItemGoal(p, categorize, quest)) {
                                         if (new GiveItemGoalChecker().checkGive_Item(p, ObjectiveType.GIVE_ITEM, categorize)) {
                                             MenuPanel panel = new MenuPanel(p, categorize);
-                                            Bukkit.getScheduler().runTask(legendaryDailyQuests, panel::open);
+                                            LegendaryDailyQuests.getLegendaryDailyQuests().getScheduler().runTask(legendaryDailyQuests, panel::open);
                                         }
                                     }
                                 } else {
                                     LegendaryDailyQuestsAPI.acceptQuest(p, data, categorize.getId(), quest);
                                     MenuPanel panel = new MenuPanel(p, categorize);
-                                    Bukkit.getScheduler().runTask(legendaryDailyQuests, panel::open);
+                                    LegendaryDailyQuests.getLegendaryDailyQuests().getScheduler().runTask(legendaryDailyQuests, panel::open);
                                 }
                             }
                         }

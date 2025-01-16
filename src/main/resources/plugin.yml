@@ -1,7 +1,8 @@
 name: LegendaryDailyQuests
 main: com.gyzer.legendaryrealms.LegendaryDailyQuests
-version: 1.1.2
+version: 1.1.4
 api-version: 1.17
+folia-supported: true
 softdepend:
   - Vault
   - PlayerPoints

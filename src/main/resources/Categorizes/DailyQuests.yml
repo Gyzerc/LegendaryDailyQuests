@@ -37,6 +37,8 @@ settings:
   rewards:
     - 'console_command;money give %player% 1000'
     - 'console_command;give %player% diamond 64'
+  #set amount by permission: legendarydailyquests.default_refresh_points.{Categorize ID}.amount
+  default-refresh-points: 1
 #menu setting
 gui:
   title: '&0[&#E0FFFF Daily Quests &0]'

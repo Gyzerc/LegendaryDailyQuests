@@ -1,5 +1,6 @@
 package com.gyzer.legendaryrealms.Manager;
 
+import com.gyzer.legendaryrealms.Data.Quest.Categorize;
 import com.gyzer.legendaryrealms.Data.User.LoginData;
 import com.gyzer.legendaryrealms.Data.User.PlayerData;
 import com.gyzer.legendaryrealms.LegendaryDailyQuests;
@@ -40,4 +41,5 @@ public class PlayerDataManager {
     public void saveCaches(){
         caches.forEach((uuid, data) -> legendaryDailyQuests.getDataProvider().savePlayerData(data));
     }
+
 }
